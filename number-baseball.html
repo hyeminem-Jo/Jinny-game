@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="scss/number-baseball.scss">
+  <title>JinnyGame: 숫자 야구 게임</title>
+  <link rel="stylesheet" href="scss/number-baseball.scss">
+  <script defer src="js/number-baseball.js"></script>
+</head>
+
+<body>
+  <div id="gameRule" class="hidden">
+    <img src="./img/character-moka-01.png" alt="character-moka" />
+    <div class="rule-explanation">
+      <h1 class="game-name">숫자 야구 게임</h1>
+      <div class="game-rule">
+        <h2 class="game-rule__title">&#60; 게임 규칙 &#62;</h2>
+        <p class="game-rule__text">
+          <span class="number">1</span>
+          상대편이 숫자 1~9 중 중복되지 않게 4개를 고른다. <br>
+          <span class="number">2</span>
+          10 번의 기회가 주어지고, 그 안에 해당 숫자 4개를 순서 포함해서 맞춘다. <br>
+          <span class="number">3</span>
+          10 번의 기회 동안 다음의 힌트가 계속 주어진다. <br>
+          <div class="add">
+            - 볼(ball) : 숫자만 맞힌 개수 (순서 상관 x) <br>
+            - 스트라이크(strike) : 숫자 뿐만 아니라 순서까지 맞힌 개수 <br>
+            - 볼과 스트라이크는 각각 별개로 취급 <br>
+            - 4개의 숫자가 하나도 맞지 않으면 아웃 (out) <br>
+            - 3 아웃이면 패배 ! <br>
+            - 10 번의 기회가 넘어가면 패배 ! <br>
+            - 4개의 숫자가 맞고 순서도 맞다면 홈런 (home run) 승리 ! <br>
+          </div>
+        </p>
+      </div>
+    </div>
+    <button class="start">시작하기</button>
+  </div>
+  <div id="popUp" class="hidden">
+    <h1 class="result-box">
+      <span class="greeting"></span>
+      <span class="result"></span>
+      <div class="emotion emotion-win hidden">
+        <img src="./img/emotion-win.png" alt="">
+        <img src="./img/emotion-win-2.png" alt="">
+      </div>
+      <div class="emotion emotion-lose hidden">
+        <img src="./img/emotion-lose.png" alt="">
+        <img src="./img/emotion-lose.png" alt="">
+      </div>
+      <span class="answer">
+    </span></h1>
+    <div class="selector">
+      <a class="btn btn--redo" href="./number-baseball.html">다시하기</a>
+      <a class="btn btn--exit" href="javascript:history.back();">나가기</a>
+    </div>
+  </div>
+  <div class="overlay hidden"></div>
+  <div class="billboard">
+    <table class="billboard__inner">
+      <colgroup>
+        <col style="width: 20%">
+        <col style="width: 20%">
+        <col style="width: 20%">
+        <col style="width: 20%">
+        <col style="width: 20%">
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>number</th>
+          <th></th>
+          <th>ball</th>
+          <th>strike</th>
+          <th>out</th>
+        </tr>
+      </tbody>
+    </table>
+    <form action="" class="submit">
+      <input type="text" minlength="4" , maxlength="4" />
+      <input type="submit" value="입력" />
+    </form>
+  </div>
+  <img class="character" src="img/number-baseball-cha.png" alt="">
+  <img class="tool" src="img/number-baseball-ai.png" alt="">
+</body>
+
+</html>

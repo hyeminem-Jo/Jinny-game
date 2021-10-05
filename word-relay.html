@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="scss/word-relay.scss">
+  <!-- <link rel="stylesheet" href="css/word-relay.css"> -->
+  <title>JinnyGame: 쿵쿵따 게임</title>
+  <script defer src="js/word-relay.js"></script>
+  <!-- <script defer src="js/word-relay_timer.js"></script> -->
+</head>
+<body>
+  <div class="word-relay">
+    <img class="character" src="img/character-fred-01.png" alt=""><em></em>
+    <div class="participant">차례 : <span id="order">1</span> 번째 참가자 </div>
+    <div class="suggestion"><em class="hidden"></em>제시어 <span id="word">Start! </span></div>
+    <div class="timer"><span id="timer"></span> 초</div>
+    <form action="" id="word-relay__form">
+      <input type="text" maxlength="5" />
+      <input type="submit" value=" 쿵쿵따 ! " />
+    </form>
+  </div>
+</body>
+</html>

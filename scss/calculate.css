@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+#result,
+#operator,
+button {
+  height: 50px;
+  margin: 5px;
+}
+
+#result {
+  width: 180px;
+  text-align: right;
+}
+
+#operator {
+  width: 50px;
+  text-align: center;
+}
+
+button {
+  width: 50px;
+  cursor: pointer;
+}

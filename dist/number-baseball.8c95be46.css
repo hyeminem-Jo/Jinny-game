@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Keania+One&display=swap");
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background: url(/number-baseball-bg.acdf7896.jpg) top -25px center no-repeat;
+  background-size: 103%;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#gameRule {
+  z-index: 10;
+  background-color: #fff;
+  position: absolute;
+  top: 24%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 30px 50px;
+  text-align: center;
+  border-radius: 30px;
+}
+#gameRule img {
+  position: absolute;
+  top: -180px;
+  left: 50%;
+  transform: translateX(-50%) scale(80%);
+}
+#gameRule .game-name {
+  font-size: 50px;
+}
+#gameRule .game-rule .game-rule__title {
+  font-size: 30px;
+}
+#gameRule .game-rule .game-rule__text {
+  font-size: 1.2rem;
+  line-height: 1.5em;
+  text-align: left;
+}
+#gameRule .game-rule .game-rule__text .number {
+  text-align: center;
+  background-color: orange;
+  display: inline-block;
+  margin: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  line-height: 25px;
+  padding: 3px;
+  color: white;
+}
+#gameRule .add {
+  text-align: left;
+  padding-left: 50px;
+  line-height: 1.5em;
+  font-size: 1.1rem;
+}
+#gameRule .start {
+  margin: 15px;
+  padding: 10px 25px;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: orange;
+  color: white;
+}
+#gameRule .start:hover {
+  background-color: #e69500;
+}
+
+#popUp {
+  border-radius: 30px;
+  overflow: hidden;
+  z-index: 10;
+  background-color: #fff;
+  width: 700px;
+  height: 420px;
+  position: absolute;
+  padding-top: 60px;
+}
+#popUp .result-box {
+  text-align: center;
+  position: relative;
+}
+#popUp .result-box .result {
+  font-size: 90px;
+}
+#popUp .result-box .emotion {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 15px;
+}
+#popUp .result-box .emotion img {
+  transform: scale(65%);
+  margin: 0 65px;
+}
+#popUp .result-box .answer {
+  margin-top: 30px;
+  display: block;
+  font-size: 30px;
+  color: #ec7018;
+}
+#popUp .selector {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+#popUp .selector .btn {
+  text-align: center;
+  width: 50%;
+  height: 80px;
+  line-height: 80px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  background-color: orange;
+  color: #fff;
+}
+#popUp .selector .btn:hover {
+  background-color: #e69500;
+}
+#popUp .selector .btn--redo {
+  border-right: 1px solid #fff;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.582);
+  z-index: 9;
+}
+
+.hidden {
+  display: none;
+}
+
+.billboard {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 500px;
+  border: 10px solid;
+  background: url(/billboard-texture.81c78a0c.jpeg) no-repeat;
+  background-size: cover;
+  background-color: #333;
+  background-blend-mode: overlay;
+  border-color: cadetblue;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.404);
+}
+.billboard .billboard__inner {
+  width: 100%;
+  border-collapse: collapse;
+}
+.billboard .billboard__inner tbody {
+  width: 100%;
+}
+.billboard .billboard__inner tbody tr {
+  height: 50px;
+  border: none;
+  color: gold;
+  text-shadow: 0 0 15px gold;
+  font-size: 45px;
+  font-family: "Keania One", cursive;
+}
+.billboard .billboard__inner tbody tr:first-child {
+  font-size: 15px;
+  color: #fff;
+  background-color: cadetblue;
+  text-transform: uppercase;
+  text-shadow: none;
+  font-family: "Press Start 2P", cursive;
+}
+.billboard .billboard__inner tbody tr:nth-child(2) td {
+  padding-top: 10px;
+}
+.billboard .billboard__inner tbody tr .out {
+  color: crimson;
+  text-shadow: 0 0 15px crimson;
+}
+.billboard .billboard__inner tbody tr td {
+  text-align: center;
+  padding-top: 5px;
+}
+.billboard .billboard__inner tbody tr td:first-child {
+  color: #fff;
+  text-shadow: 0 0 15px #fff;
+}
+.billboard .submit {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -5px;
+  width: 45%;
+  height: 60px;
+  z-index: 10;
+  border: 7px solid cadetblue;
+  display: flex;
+}
+.billboard .submit input {
+  display: block;
+  border: none;
+}
+.billboard .submit input[type=text] {
+  width: 80%;
+  outline: none;
+  font-size: 40px;
+  text-align: center;
+  font-family: "Keania One", cursive;
+}
+.billboard .submit input[type=submit] {
+  width: 20%;
+  font-size: 25px;
+}
+
+.character {
+  position: absolute;
+  bottom: 0;
+  left: 7%;
+  transform: scale(68%);
+}
+
+.tool {
+  position: absolute;
+  right: -15%;
+  bottom: 0;
+  transform: scale(30%);
+}
+
+/*# sourceMappingURL=/number-baseball.8c95be46.css.map */
