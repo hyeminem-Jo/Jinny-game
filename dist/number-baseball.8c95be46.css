@@ -22,6 +22,23 @@ body {
   align-items: center;
 }
 
+.btn--home {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  z-index: 11;
+  display: block;
+  padding: 15px 40px;
+  background-color: #ddd;
+  border-radius: 10px;
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.btn--home:hover {
+  background-color: #c4c4c4;
+}
+
 #gameRule {
   z-index: 10;
   background-color: #fff;

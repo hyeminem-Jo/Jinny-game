@@ -8,11 +8,7 @@ const $popUp = document.querySelector('#popUp')
 const $greeting = document.querySelector('.greeting')
 const $result = document.querySelector('.result')
 const $answer = document.querySelector('.answer')
-
-$startBtn.addEventListener('click', () => {
-  $gameRule.classList.add('hidden')
-  $overLay.classList.add('hidden')
-})
+const $exitBtn = document.querySelector('.btn--exit')
 
 // 1. 1 ~ 9 의 숫자 생성
 const numbers = []
@@ -106,6 +102,11 @@ function win() {
   $overLay.classList.remove('hidden')
 }
 
+function hideGameRule() {
+  $gameRule.classList.add('hidden')
+  $overLay.classList.add('hidden')
+}
+
 // 3. 5. 유저가 숫자 맞추기 시도
 let out = 0
 let row = 1
@@ -174,6 +175,24 @@ $form.addEventListener('submit', (event) => {
 
   tries.push(value)
   row++
+})
+
+$startBtn.addEventListener('click', () => {
+  hideGameRule()
+  localStorage.setItem('readOrNot', 'read');
+})
+
+// gameRule 읽음 여부 확인
+const savedRead = localStorage.getItem('readOrNot')
+if(savedRead !== null) { 
+  hideGameRule()
+} else {
+  $gameRule.classList.remove('hidden')
+  $overLay.classList.remove('hidden')
+}
+
+$exitBtn.addEventListener('click', () => {
+  localStorage.removeItem('readOrNot')
 })
 
 $input.focus()

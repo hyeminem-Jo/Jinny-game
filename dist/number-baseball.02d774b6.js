@@ -128,10 +128,7 @@ var $popUp = document.querySelector('#popUp');
 var $greeting = document.querySelector('.greeting');
 var $result = document.querySelector('.result');
 var $answer = document.querySelector('.answer');
-$startBtn.addEventListener('click', function () {
-  $gameRule.classList.add('hidden');
-  $overLay.classList.add('hidden');
-}); // 1. 1 ~ 9 의 숫자 생성
+var $exitBtn = document.querySelector('.btn--exit'); // 1. 1 ~ 9 의 숫자 생성
 
 var numbers = [];
 
@@ -221,6 +218,11 @@ function win() {
   $result.prepend("\uD648\uB7F0", document.createElement('br'));
   $answer.append("\uC815\uB2F5: ".concat(answer.join()));
   $overLay.classList.remove('hidden');
+}
+
+function hideGameRule() {
+  $gameRule.classList.add('hidden');
+  $overLay.classList.add('hidden');
 } // 3. 5. 유저가 숫자 맞추기 시도
 
 
@@ -291,6 +293,23 @@ $form.addEventListener('submit', function (event) {
   tries.push(value);
   row++;
 });
+$startBtn.addEventListener('click', function () {
+  hideGameRule();
+  localStorage.setItem('readOrNot', 'read');
+}); // gameRule 읽음 여부 확인
+
+var savedRead = localStorage.getItem('readOrNot');
+
+if (savedRead !== null) {
+  hideGameRule();
+} else {
+  $gameRule.classList.remove('hidden');
+  $overLay.classList.remove('hidden');
+}
+
+$exitBtn.addEventListener('click', function () {
+  localStorage.removeItem('readOrNot');
+});
 $input.focus();
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -320,7 +339,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49539" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61910" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

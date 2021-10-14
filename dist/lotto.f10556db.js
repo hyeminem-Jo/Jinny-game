@@ -118,7 +118,38 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"js/lotto.js":[function(require,module,exports) {
+var candidate = Array(45).fill().map(function (v, i) {
+  return i + 1;
+}); // 1 ~ 45 까지 뽑는 코드
+// Array(45): length 가 45개인 빈 배열 만들기,
+// fill(): 빈 배열 안에 undefined 로 45개 채우기,
+// map(): 마지막으로 map 을 통해 index 에 1씩 더하기
 
+console.log(candidate); // [ 1, 2, 3 ... 45 ] 생성
+
+var shuffle = [];
+
+while (candidate.length > 0) {
+  // 조건(candidate.length) 자체가 알아서 계속 변해주기 떄문에 i++, i-- 등이 필요 x
+  var random = Math.floor(Math.random() * candidate.length); // 무작위 인덱스 뽑기
+
+  var spliceArray = candidate.splice(random, 1); // 뽑은 값은 배열에 있음
+
+  var value = spliceArray[0]; // 배열에 들어있는 값을 꺼내어
+
+  shuffle.push(value); // shuffle 배열에 넣기 
+} // 작동원리: 45개의 묶음이 있으면 랜덤으로 하나씩 뽑아서 완전히 랜덤으로 섞인 배열 하나를 새로 다시 만들어냄
+
+
+console.log(shuffle);
+var winBalls = shuffle.slice(0, 6).sort(function (a, b) {
+  return a - b;
+}); // 1. slice(0, 6): 0번째 부터 하여 6개의 숫자 잘라내기 (원본 shuffle[] 은 훼손되지 x)
+// 2. sort(): 작은숫자 => 큰숫자 순(오름차순) 으로 정렬
+
+var bonus = shuffle[6]; // 7번째 숫자: 보너스 숫자
+
+console.log(winBalls, bonus);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -147,7 +178,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49539" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51857" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
