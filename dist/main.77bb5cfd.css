@@ -1,5 +1,22 @@
 a {
   display: block;
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+ol, li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 20px 50px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 2em;
 }
 
 /*# sourceMappingURL=/main.77bb5cfd.css.map */

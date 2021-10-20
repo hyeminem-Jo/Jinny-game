@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Response-</title>
+  <script defer src="js-text/response-check_text.js"></script>
+  <style>
+    .wrap {
+      margin-left: 20px;
+    }
+
+    #screen {
+      width: 500px;
+      height: 500px;
+      color: white;
+      font-size: 30px;
+      text-align: center;
+      line-height: 500px;
+      cursor: pointer;
+      border-radius: 30px;
+      margin-bottom: 20px;
+    }
+
+    .waiting {
+      background-color: dodgerblue;
+      transition: .2s;
+    }
+
+    .waiting:hover {
+      opacity: .86;
+    }
+
+    .ready {
+      background-color: crimson;
+    }
+
+    .now {
+      background-color: forestgreen;
+    }
+
+    #result {
+      font-size: 1.2rem;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div id="screen" class="waiting">▷ 클릭해서 시작하기 ◁</div>
+    <div id="result"></div>
+  </div>
+</body>
+</html>

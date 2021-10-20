@@ -118,7 +118,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"js/word-relay.js":[function(require,module,exports) {
-var numOfUser = Number(prompt("참가자 수를 입력하세요"));
+var numOfUser = Number(prompt('참가자 수를 입력하세요'));
 var $em = document.querySelector('.suggestion em');
 
 if (numOfUser) {
@@ -156,7 +156,7 @@ if (numOfUser) {
       var timer = function timer() {
         second = Number($timer.textContent);
         second -= 1;
-        $timer.textContent = second; // $timer.textContent = second - 1 : 
+        $timer.textContent = second; // $timer.textContent = second - 1 :
         // 계속 30에서 1을 한번 밖에 안 뺀 값인 29 만 나옴
 
         if (second > 0 && second <= 5) {
@@ -188,7 +188,7 @@ if (numOfUser) {
     this.setAttribute('placeholder', '단어를 입력하세요');
   });
 } else if (isNaN(numOfUser)) {
-  alert("숫자를 입력해주세요"); // numOfUser = Number(prompt("참가자 수를 입력하세요"))
+  alert('숫자를 입력해주세요'); // numOfUser = Number(prompt("참가자 수를 입력하세요"))
 
   document.querySelector('body > *').remove();
 } else {
@@ -222,7 +222,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61910" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63155" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

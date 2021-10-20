@@ -1,3 +1,21 @@
 a {
   display: block;
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+ol, li {
+  // list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 20px 50px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 2em;
 }
