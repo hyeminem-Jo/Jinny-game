@@ -119,6 +119,8 @@ $form.addEventListener('submit', (event) => { // 3. 유저가 숫자 맞추기 �
 
   // for => forEach() 문으로 바꾸기
   // forEach(요소 값, 요소 인덱스, 배열)
+  // ex) answer = [3, 1, 4, 6] 
+  //      value = [1, 3, 4, 7]
   answer.forEach((answerItem, i) => {
     const index = value.indexOf(answerItem)
     if (index > -1) {
