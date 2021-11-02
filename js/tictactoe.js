@@ -12,6 +12,8 @@ const checkWinnerAndDraw = (target) => {
   const hasWinner = checkWinner(target);
   if (hasWinner) {
     $result.textContent = `승자는 ${turn} 입니다.`;
+    $table.removeEventListener('click', clickTd);
+    return;
   }
   // 승자가 없으면 (무승부)
   const draw = rows.flat().every((cell) => cell.textContent);
@@ -92,7 +94,7 @@ const clickTd = (event) => {
       checkWinnerAndDraw(randomCell)
       clickable = true;
     }, 1000)
-  }
+  } 
 };
 
 // table 내 tr, td 태그 생성
