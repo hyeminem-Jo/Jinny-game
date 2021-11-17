@@ -1,3 +1,5 @@
+@import "./game-common.scss";
+
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Keania+One&display=swap');
@@ -22,94 +24,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.btn--home {
-  position: absolute;
-  top: 30px;
-  right: 20px;
-  z-index: 11;
-  display: block;
-  padding: 15px 40px;
-  background-color: #ddd;
-  border-radius: 10px;
-  color: #333;
-  font-size: 1.5rem;
-  font-weight: 700;
-
-  &:hover {
-    background-color: darken(#ddd, 10%);
-  }
-}
-
-#gameRule {
-  z-index: 10;
-  background-color: #fff;
-  position: absolute;
-  top: 24%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 30px 50px;
-  text-align: center;
-  border-radius: 30px;
-
-  img {
-    position: absolute;
-    top: -180px;
-    left: 50%;
-    transform: translateX(-50%) scale(80%);
-  }
-
-  .game-name {
-    font-size: 50px;
-  }
-
-  .game-rule {
-
-    .game-rule__title {
-      font-size: 30px;
-    }
-
-    .game-rule__text {
-      font-size: 1.2rem;
-      line-height: 1.5em;
-      text-align: left;
-
-      .number {
-        text-align: center;
-        background-color: orange;
-        display: inline-block;
-        margin: 10px;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        line-height: 25px;
-        padding: 3px;
-        color: white;
-      }
-
-    }
-  }
-
-  .add {
-    text-align: left;
-    padding-left: 50px;
-    line-height: 1.5em;
-    font-size: 1.1rem;
-  }
-
-  .start {
-    margin: 15px;
-    padding: 10px 25px;
-    font-size: 20px;
-    border-radius: 10px;
-    background-color: orange;
-    color: white;
-
-    &:hover {
-      background-color: darken(orange, 5%);
-    }
-  }
 }
 
 #popUp {
@@ -176,16 +90,6 @@ body {
       border-right: 1px solid #fff;
     }
   }
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.582);
-  z-index: 9;
 }
 
 .hidden {

@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="scss/word-relay.scss">
-  <!-- <link rel="stylesheet" href="css/word-relay.css"> -->
-  <title>JinnyGame: 쿵쿵따 게임</title>
+  <title>쿵쿵따! 쿵쿵따!</title>
   <script defer src="js/word-relay.js"></script>
-  <!-- <script defer src="js/word-relay_timer.js"></script> -->
 </head>
+
 <body>
+  <a class="btn--home btn--exit" href="javascript:history.back();">나가기</a>
+  <div id="gameRule">
+    <img src="./img/character-fred-01.png" alt="character-fred" />
+    <div class="rule-explanation">
+      <h1 class="game-name">쿵쿵따! 쿵쿵따!</h1>
+      <div class="game-rule">
+        <h2 class="game-rule__title">&#60; 게임 규칙 &#62;</h2>
+        <p class="game-rule__text">
+          <span class="number">1</span>
+          참가할 인원의 수를 입력한다. <br>
+          <span class="number">2</span>
+          첫 번째 사람이 세 글자로 된 제시 단어를 먼저 입력한다. <br>
+          <span class="number">3</span>
+          차례대로 앞순서에서 나온 단어의 마지막 글자를 첫 글자로 한 단어를 입력한다.<br>
+          <span class="number">4</span>
+          마지막 사람까지 오면 다시 첫 번째였던 사람이 그 뒤를 이어 게임을 진행한다. <br>
+          <div class="add">
+            - 세 글자로 된 단어를 입력해야한다. <br>
+            - 30 초 이내로 단어를 제시해야하며, 그렇지 않으면 탈락이다. <br>
+          </div>
+        </p>
+      </div>
+    </div>
+    <button class="start">게임 시작하기</button>
+  </div>
+  <div class="overlay"></div>
   <div class="word-relay">
-    <img class="character" src="img/character-fred-01.png" alt=""><em></em>
+    <img class="character" src="img/wordrelay-cha.png" alt="">
     <div class="participant">차례 : <span id="order">1</span> 번째 참가자 </div>
-    <div class="suggestion"><em class="hidden"></em>제시어 <span id="word">Start! </span></div>
+    <div class="suggestion"><em class="hidden last-letter"></em>제시어 <span id="word">Start! </span></div>
     <div class="timer"><span id="timer"></span> 초</div>
     <form action="" id="word-relay__form">
       <input type="text" maxlength="5" />
@@ -22,4 +48,5 @@
     </form>
   </div>
 </body>
+
 </html>

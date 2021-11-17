@@ -1,3 +1,5 @@
+@import './game-common.scss';
+
 
 @font-face {
   font-family: 'SBAggroM';
@@ -34,12 +36,16 @@ body {
   align-items: center;
 }
 
+body {
+  overflow: hidden;
+}
+
 .word-relay {
   @include x-center {
     transform: translate(-50%, -45%);
   }
 
-  top: 50%;
+  top: 45%;
   text-align: center;
   padding: 50px;
   padding-top: 100px;
@@ -49,9 +55,11 @@ body {
 
   .character {
     @include x-center;
-    bottom: 98%;
-    width: 250px;
+    left: -442px;
+    bottom: -200px;
     z-index: 10;
+    transform: scale(45%);
+    
 
     &+em {
       @include x-center;
@@ -194,5 +202,11 @@ body {
     &:hover {
       box-shadow: none;
     }
+  }
+}
+
+#gameRule {
+  img {
+    transform: translateX(-50%) translateY(45px) scale(90%);
   }
 }

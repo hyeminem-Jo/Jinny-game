@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RPG game</title>
+  <link rel="stylesheet" href="scss/rpg.scss">
+  <script defer src="js/rpg.js"></script>
+  <!-- <script defer src="js-text/rpg_org.js"></script> -->
+</head>
+<body>
+
+  <form id="start-screen">
+    <h4 class="hero-name">주인공의 이름을 입력하세요 !</h4>
+    <input id="name-input" placeholder="ex) 귀요미 용사" />
+    <button id="start" class="btn">시작하기</button>
+  </form>
+  <div id="screen">
+    <div class="start-screen-overlay"></div>
+    <div id="character-stat">
+      <!-- 주인공 스탯 -->
+      <div id="hero-stat">
+        <!-- <strong class="title">주인공 STAT</strong> -->
+        <strong id="hero-name"></strong>
+        <span id="hero-level"></span>
+        <span id="hero-hp"></span><br>
+        <span id="hero-xp"></span>
+        <span id="hero-att"></span>
+      </div>
+      <!-- 몬스터 스탯 -->
+      <div id="monster-stat">
+        <!-- <strong class="title">몬스터 STAT</strong> -->
+        <strong id="monster-name"></strong>
+        <span id="monster-level"></span>
+        <span id="monster-hp"></span>
+        <span id="monster-att"></span>
+      </div>
+    </div>
+    <div id="menu">
+      <!-- 일반 모드 -->
+      <div id="game-menu" style="display: none;">
+        <strong class="title">게임 메뉴</strong>
+        <div class="selection">
+          <button id="menu-1" class="btn">모험하기</button>
+          <button id="menu-2" class="btn">휴식하기</button>
+          <button id="menu-3" class="btn">초기화</button>
+        </div>
+      </div>
+      <!-- 전투 모드 -->
+      <div id="battle-menu" style="display: none;">
+        <strong class="title">전투 모드 돌입 !!</strong>
+        <div class="selection">
+          <button id="battle-1" class="btn">공격하기</button>
+          <button id="battle-2" class="btn">회복하기</button>
+          <button id="battle-3" class="btn">도망가기</button>
+        </div>
+      </div>
+      <!-- 게임 메시지 -->
+      <div id="message"></div>
+    </div>
+    <div id="monster-img" style="display: none;"></div>
+  </div>
+  
+</body>
+</html>

@@ -1,26 +1,69 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TicTacToe!</title>
+  <title>다함께 틱택토!</title>
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="scss/tictactoe.scss">
+  <script defer src="./js/game-common.js"></script>
   <script defer src="./js/tictactoe.js"></script>
-  <!-- <script defer src="./js-text/tictactoe_text.js"></script> -->
-  <style>
-    table {
-      border-collapse: collapse;
-    }
-
-    td {
-      border: 1px solid;
-      width: 100px;
-      height: 100px;
-      text-align: center;
-      font-size: 80px;
-    }
-  </style>
 </head>
+
 <body>
+  <a class="btn--home btn--exit" href="javascript:history.back();">나가기</a>
+  <!-- Game rule -->
+  <div id="gameRule">
+    <img src="./img/character-tina-03.png" alt="character-tina" />
+    <div class="rule-explanation">
+      <h1 class="game-name">다함께 틱택토!</h1>
+      <div class="game-rule">
+        <h2 class="game-rule__title">&#60; 게임 규칙 &#62;</h2>
+        <p class="game-rule__text">
+          <span class="number">1</span>
+          '나'의 표시는 'o' 이며, 먼저 빈 칸에 클릭하여 표시한다. <br>
+          <span class="number">2</span>
+          다음은 상대편 순서로, 'x' 가 1초 뒤 자동으로 표시된다.<br>
+          <span class="number">3</span>
+          다시 '나' 가 클릭하여 표시하며 이와 같은 순서로 번갈아 진행된다. <br>
+          <div class="add">
+            - 이미 표시된 칸이 아닌 빈 칸에 표시를 해줘야한다.<br>
+            - 가로나 세로, 혹은 대각선으로 같은 모양이 3개 연달아 이어지면 승리다. <br>
+          </div>
+        </p>
+      </div>
+    </div>
+    <button class="start">게임 시작하기</button>
+  </div>
+  <!-- Popup -->
+  <div id="popUp" class="hidden">
+    <h1 class="result-box">
+      <span class="greeting"></span>
+      <span class="result"></span>
+      <span class="winner"></span>
+      <div class="emotion emotion-win hidden">
+        <img src="./img/emotion-win.png" alt="">
+        <img src="./img/emotion-win-2.png" alt="">
+      </div>
+      <div class="emotion emotion-lose hidden">
+        <img src="./img/emotion-lose.png" alt="">
+        <img src="./img/emotion-lose.png" alt="">
+      </div>
+      <span class="answer">
+      </span>
+    </h1>
+    <div class="selector">
+      <a class="btn btn--redo" href="./tictactoe.html">다시하기</a>
+      <a class="btn btn--exit" href="javascript:history.back();">나가기</a>
+    </div>
+  </div>
+  <div class="overlay"></div>
+  <img class="charactor" src="./img/tictactoel-cha.png" alt="character-tina" />
 </body>
+
 </html>

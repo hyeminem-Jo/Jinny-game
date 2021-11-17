@@ -1,42 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Keania+One&display=swap");
-button {
-  border: none;
-  outline: none;
-  cursor: pointer;
+@font-face {
+  font-family: "SBAggroM";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
-
-a {
-  text-decoration: none;
-}
-
-body {
-  background: url(/number-baseball-bg.acdf7896.jpg) top -25px center no-repeat;
-  background-size: 103%;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.btn--home {
-  position: absolute;
-  top: 30px;
-  right: 20px;
-  z-index: 11;
-  display: block;
-  padding: 15px 40px;
-  background-color: #ddd;
-  border-radius: 10px;
-  color: #333;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-.btn--home:hover {
-  background-color: #c4c4c4;
+.hidden {
+  display: none;
 }
 
 #gameRule {
@@ -49,6 +20,7 @@ body {
   padding: 30px 50px;
   text-align: center;
   border-radius: 30px;
+  font-family: "SBAggroM";
 }
 #gameRule img {
   position: absolute;
@@ -82,7 +54,7 @@ body {
 #gameRule .add {
   text-align: left;
   padding-left: 50px;
-  line-height: 1.5em;
+  line-height: 1.8em;
   font-size: 1.1rem;
 }
 #gameRule .start {
@@ -92,9 +64,64 @@ body {
   border-radius: 10px;
   background-color: orange;
   color: white;
+  cursor: pointer;
+  border: none;
 }
 #gameRule .start:hover {
   background-color: #e69500;
+}
+
+.overlay {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 130%;
+  height: 130%;
+  background-color: rgba(0, 0, 0, 0.582);
+  z-index: 9;
+}
+
+.btn--home {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  z-index: 11;
+  display: block;
+  padding: 15px 40px;
+  background-color: #ddd;
+  border-radius: 10px;
+  color: #555;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: "SBAggroM";
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.593);
+}
+.btn--home:hover {
+  background-color: #919191;
+  color: #fff;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background: url(/number-baseball-bg.acdf7896.jpg) top -25px center no-repeat;
+  background-size: 103%;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #popUp {
@@ -152,16 +179,6 @@ body {
 }
 #popUp .selector .btn--redo {
   border-right: 1px solid #fff;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.582);
-  z-index: 9;
 }
 
 .hidden {

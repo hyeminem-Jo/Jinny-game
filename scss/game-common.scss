@@ -1,0 +1,115 @@
+@font-face {
+  font-family: 'SBAggroM';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.hidden {
+  display: none;
+}
+
+#gameRule {
+  z-index: 10;
+  background-color: #fff;
+  position: absolute;
+  top: 24%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 30px 50px;
+  text-align: center;
+  border-radius: 30px;
+  font-family: 'SBAggroM';
+
+  img {
+    position: absolute;
+    top: -180px;
+    left: 50%;
+    transform: translateX(-50%) scale(80%);
+  }
+
+  .game-name {
+    font-size: 50px;
+  }
+
+  .game-rule {
+
+    .game-rule__title {
+      font-size: 30px;
+    }
+
+    .game-rule__text {
+      font-size: 1.2rem;
+      line-height: 1.5em;
+      text-align: left;
+
+      .number {
+        text-align: center;
+        background-color: orange;
+        display: inline-block;
+        margin: 10px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        line-height: 25px;
+        padding: 3px;
+        color: white;
+      }
+
+    }
+  }
+
+  .add {
+    text-align: left;
+    padding-left: 50px;
+    line-height: 1.8em;
+    font-size: 1.1rem;
+  }
+
+  .start {
+    margin: 15px;
+    padding: 10px 25px;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+    border: none;
+
+    &:hover {
+      background-color: darken(orange, 5%);
+    }
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 130%;
+  height: 130%;
+  background-color: rgba(0, 0, 0, 0.582);
+  z-index: 9;
+}
+
+.btn--home {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  z-index: 11;
+  display: block;
+  padding: 15px 40px;
+  background-color: #ddd;
+  border-radius: 10px;
+  color: #555;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'SBAggroM';
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.593);
+
+  &:hover {
+    background-color: darken(#ddd, 30%);
+    color: #fff;
+  }
+}

@@ -121,20 +121,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 var $form = document.querySelector('form');
 var $input = document.querySelector('form input[type=text]');
 var $logs = document.querySelector('#logs');
-var $startBtn = document.querySelector('.start');
-var $gameRule = document.querySelector('#gameRule');
-var $overLay = document.querySelector('.overlay');
 var $popUp = document.querySelector('#popUp');
 var $greeting = document.querySelector('.greeting');
 var $result = document.querySelector('.result');
 var $answer = document.querySelector('.answer');
-var $exitBtn = document.querySelector('.btn--exit'); // 1. 1 ~ 9 의 숫자 생성
+var $overLay = document.querySelector('.overlay');
+var $startBtn = document.querySelector('.start'); // 1. 1 ~ 9 의 숫자 생성
 
 var numbers = [];
 
 for (var n = 0; n < 9; n++) {
   numbers.push(n + 1);
-} // 2. 상대편이 제시하는 수로, 1 ~ 9 의 숫자 중 랜덤의 숫자 뽑기 
+} // 2. 상대편이 제시하는 수로, 1 ~ 9 의 숫자 중 랜덤의 숫자 뽑기
 
 
 var answer = [];
@@ -145,7 +143,7 @@ for (var _n = 0; _n < 4; _n++) {
   numbers.splice(index, 1);
 }
 
-console.log(answer); // 4. 유저가 시도한 숫자인 input의 입력값 검사 
+console.log(answer); // 4. 유저가 시도한 숫자인 input의 입력값 검사
 
 var tries = [];
 
@@ -218,11 +216,6 @@ function win() {
   $result.prepend("\uD648\uB7F0", document.createElement('br'));
   $answer.append("\uC815\uB2F5: ".concat(answer.join()));
   $overLay.classList.remove('hidden');
-}
-
-function hideGameRule() {
-  $gameRule.classList.add('hidden');
-  $overLay.classList.add('hidden');
 } // 3. 5. 유저가 숫자 맞추기 시도
 
 
@@ -294,23 +287,8 @@ $form.addEventListener('submit', function (event) {
   row++;
 });
 $startBtn.addEventListener('click', function () {
-  hideGameRule();
-  localStorage.setItem('readOrNot', 'read');
-}); // gameRule 읽음 여부 확인
-
-var savedRead = localStorage.getItem('readOrNot');
-
-if (savedRead !== null) {
-  hideGameRule();
-} else {
-  $gameRule.classList.remove('hidden');
-  $overLay.classList.remove('hidden');
-}
-
-$exitBtn.addEventListener('click', function () {
-  localStorage.removeItem('readOrNot');
+  $input.focus();
 });
-$input.focus();
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -339,7 +317,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64479" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52828" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

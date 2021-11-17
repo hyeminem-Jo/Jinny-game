@@ -118,82 +118,116 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"js/word-relay.js":[function(require,module,exports) {
-var numOfUser = Number(prompt('참가자 수를 입력하세요'));
 var $em = document.querySelector('.suggestion em');
+var $startBtn = document.querySelector('.start');
+$startBtn.addEventListener('click', gameStart);
 
-if (numOfUser) {
-  var $form = document.querySelector('#word-relay__form');
-  var $input = $form.querySelector('input[type=text]');
-  var $order = document.querySelector('#order');
-  var $word = document.querySelector('#word');
-  var $timer = document.getElementById('timer');
-  var word;
-  var newWord;
-  var second;
+function gameStart() {
+  var numOfUser = Number(prompt('참가자 수를 입력하세요'));
 
-  var onSubmitHandler = function onSubmitHandler(event) {
-    event.preventDefault();
-    newWord = $input.value;
+  if (numOfUser) {
+    var $form = document.querySelector('#word-relay__form');
+    var $input = $form.querySelector('input[type=text]');
+    var $order = document.querySelector('#order');
+    var $word = document.querySelector('#word');
+    var $timer = document.getElementById('timer');
+    var word;
+    var newWord;
+    var second;
 
-    if ((!word || word[word.length - 1] === newWord[0]) && newWord.length === 3) {
-      word = newWord;
-      $word.textContent = word;
-      $word.style.color = 'black';
-      $em.classList.remove('hidden');
-      var order = Number($order.textContent);
+    var onSubmitHandler = function onSubmitHandler(event) {
+      event.preventDefault();
+      newWord = $input.value;
 
-      if (order === numOfUser) {
-        $order.textContent = 1;
-      } else {
-        $order.textContent = order + 1;
-      } // 타이머(제한시간) 작동
+      if ((!word || word[word.length - 1] === newWord[0]) && newWord.length === 3) {
+        word = newWord;
+        $word.textContent = word;
+        $word.style.color = 'black';
+        $em.classList.remove('hidden');
+        var order = Number($order.textContent);
+
+        if (order === numOfUser) {
+          $order.textContent = 1;
+        } else {
+          $order.textContent = order + 1;
+        } // 타이머(제한시간) 작동
 
 
-      clearInterval(timerId);
-      intervalId = setInterval(timer, 1000);
-      $timer.textContent = '8';
+        clearInterval(timerId);
+        intervalId = setInterval(timer, 1000);
+        $timer.textContent = '30';
 
-      var timer = function timer() {
-        second = Number($timer.textContent);
-        second -= 1;
-        $timer.textContent = second; // $timer.textContent = second - 1 :
-        // 계속 30에서 1을 한번 밖에 안 뺀 값인 29 만 나옴
+        var timer = function timer() {
+          second = Number($timer.textContent);
+          second -= 1;
+          $timer.textContent = second; // $timer.textContent = second - 1 :
+          // 계속 30에서 1을 한번 밖에 안 뺀 값인 29 만 나옴
 
-        if (second > 0 && second <= 5) {
-          $timer.style.color = 'red';
-        } else if (second <= 0) {
-          $timer.style.color = 'red';
-          clearInterval(timerId); // 0초 때 타이머 멈춤
-          // timerId = null // 흠
-        }
-      };
+          if (second > 0 && second <= 5) {
+            $timer.style.color = 'red';
+          } else if (second <= 0) {
+            $timer.style.color = 'red';
+            clearInterval(timerId); // 0초 때 타이머 멈춤
+            // timerId = null // 흠
+          }
+        };
 
-      var timerId = setInterval(timer, 1000);
-    } else if (newWord.length !== 3) {
-      alert('단어는 세글자로 입력해야합니다');
-    } else if (word && word[word.length - 1] !== newWord[0]) {
-      alert('올바르지 않은 단어입니다');
-    }
+        var timerId = setInterval(timer, 1000);
+      } else if (newWord.length !== 3) {
+        alert('단어는 세글자로 입력해야합니다');
+      } else if (word && word[word.length - 1] !== newWord[0]) {
+        alert('올바르지 않은 단어입니다');
+      }
 
-    $input.value = '';
+      $input.value = '';
+      $input.focus();
+    };
+
     $input.focus();
-  };
+    $form.addEventListener('submit', onSubmitHandler);
+    $input.addEventListener('focus', function () {
+      this.setAttribute('placeholder', '');
+    });
+    $input.addEventListener('blur', function () {
+      this.setAttribute('placeholder', '단어를 입력하세요');
+    });
+  } else if (isNaN(numOfUser)) {
+    alert('숫자를 입력해주세요'); // numOfUser = Number(prompt("참가자 수를 입력하세요"))
 
-  $input.focus();
-  $form.addEventListener('submit', onSubmitHandler);
-  $input.addEventListener('focus', function () {
-    this.setAttribute('placeholder', '');
-  });
-  $input.addEventListener('blur', function () {
-    this.setAttribute('placeholder', '단어를 입력하세요');
-  });
-} else if (isNaN(numOfUser)) {
-  alert('숫자를 입력해주세요'); // numOfUser = Number(prompt("참가자 수를 입력하세요"))
-
-  document.querySelector('body > *').remove();
-} else {
-  document.querySelector('body > *').remove();
+    document.querySelector('body > *').remove();
+  } else {
+    document.querySelector('body > *').remove();
+  }
 }
+
+var $gameRule = document.querySelector('#gameRule');
+var $overLay = document.querySelector('.overlay');
+var $exitBtn = document.querySelector('.btn--exit'); // 게임 룰 
+
+function hideGameRule() {
+  $gameRule.classList.add('hidden');
+  $overLay.classList.add('hidden');
+} // 게임 시작하기
+
+
+$startBtn.addEventListener('click', function () {
+  hideGameRule();
+  localStorage.setItem('readOrNot', 'read');
+}); // gameRule 읽음 여부 확인
+
+var savedRead = localStorage.getItem('readOrNot');
+
+if (savedRead !== null) {
+  hideGameRule();
+  gameStart();
+} else {
+  $gameRule.classList.remove('hidden');
+  $overLay.classList.remove('hidden');
+}
+
+$exitBtn.addEventListener('click', function () {
+  localStorage.removeItem('readOrNot');
+});
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -222,7 +256,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64479" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52828" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+body {
+  height: 100vh;
+  background-color: #faefda;
+  // background-color: rgb(241, 241, 241);
+}
+
+header {
+  position: relative;
+  height: 190px;
+  background: url(../img/header-bg.png) no-repeat center;
+  background-size: cover;
+
+  .logo {
+    position: absolute;
+    width: 480px;
+    height: 230px;
+    left: 50%;
+    bottom: -70px;
+    transform: translateX(-50%);
+    font-size: 0;
+    background: url(../img/jinny-game_logo.png) no-repeat center;
+    background-size: contain;
+  }
+}
+
+.inner {
+  // border: 1px solid red;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 120px;
+}
+
+.games {
+  // border: 1px solid gray;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .games__item {
+    // border: 1px solid;
+    width: 46%;
+    margin-bottom: 30px;
+    text-align: center;
+    transition: .3s;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.26);
+    background-color: #fff;
+
+    &:hover {
+      transform: translateY(-7px);
+      // box-shadow: 0 6px 6px rgba(0, 0, 0, 0.281);
+
+      .desc {
+        opacity: 1;
+      }
+    }
+
+    &:nth-child(1) a {
+      background: url(../img/game-item-01.jpg) no-repeat center;
+      background-size: cover;
+    }
+
+    &:nth-child(2) a {
+      background: url(../img/game-item-02.jpg) no-repeat center;
+      background-size: cover;
+    }
+
+    &:nth-child(3) a {
+      background: url(../img/game-item-03.jpg) no-repeat center;
+      background-size: cover;
+    }
+
+    a {
+      display: block;
+      position: relative;
+      height: 200px;
+      background-color: #eee;
+
+      .desc {
+        border: 1px solid;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.589);
+        color: #fff;
+        font-size: 1.4rem;
+        line-height: 200px;
+        opacity: 0;
+        transition: .3s;
+      }
+    }
+
+    .title {
+      font-size: 1.6rem;
+      padding: 10px 0;
+    }
+  }
+}
+
+.extra-game {
+  margin-top: 100px;
+  color: #ccc;
+  font-size: 1.5rem;
+  line-height: 1.5em;
+}
