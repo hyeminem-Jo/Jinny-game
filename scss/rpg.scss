@@ -1,9 +1,4 @@
-@font-face {
-  font-family: 'EliceDigitalBaeum_Bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/EliceDigitalBaeum_Bold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
+@import "./game-common.scss";
 
 @mixin center-po {
   position: absolute;
@@ -28,15 +23,25 @@
 body {
   height: 100vh;
   margin: 0;
-  // border: 10px solid gold;
+  background: url(../img/rpg-background.jpg) top -60px center;
+  background-size: cover;
+  overflow: hidden;
 }
 
 input {
   outline: none;
 }
 
-* {
-  box-sizing: border-box;
+#gameRule {
+  width: 50%;
+
+  .game-rule {
+    margin-top: -20px;
+  }
+}
+
+.overlay {
+  opacity: 0;
 }
 
 .btn {
@@ -55,6 +60,13 @@ input {
   &:hover {
     box-shadow: -2px -4px 7px #666 inset;
   }
+}
+
+.hero-image {
+  position: absolute;
+  bottom: -120px;
+  left: -200px;
+  transform: scale(34%);
 }
 
 #start-screen {
@@ -110,16 +122,17 @@ input {
   }
 
   #character-stat {
+    border: 10px solid gold;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.363);
     border-radius: 10px;
     background-color: #fff;
-    padding: 20px;
+    padding-top: 10px;
     @include justify-content-center;
-    bottom: 20px;
+    bottom: 40px;
     width: 80%;
     display: flex;
     justify-content: space-between;
-    height: 230px;
+    height: 170px;
 
     #hero-stat,
     #monster-stat {
@@ -142,6 +155,7 @@ input {
     }
 
     #hero-stat {
+      margin-left: 30px;
 
       #hero-name {
         display: block;
@@ -159,6 +173,7 @@ input {
 
     #monster-stat {
       text-align: right;
+      margin-right: 30px;
 
       #monster-name {
         display: block;
@@ -168,12 +183,13 @@ input {
   }
 
   #menu {
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.473);
     position: absolute;
     width: 100%;
-    height: 180px;
+    height: 155px;
     padding: 60px;
     font-family: 'EliceDigitalBaeum_Bold';
+    box-sizing: border-box;
 
     #game-menu,
     #battle-menu {
@@ -238,7 +254,7 @@ input {
 
 #message {
   @include justify-content-center;
-  top: 100%;
+  top: calc(100% - 20px);
   width: 50%;
   text-align: center;
   background-color: #fff;
@@ -246,5 +262,6 @@ input {
   font-size: 22px;
   padding: 15px;
   border: 5px solid #eee;
-  border-radius: 20px;
+  border-top: none;
+  border-radius: 0 0 20px 20px;
 }

@@ -7,10 +7,47 @@
   <title>RPG game</title>
   <link rel="stylesheet" href="scss/rpg.scss">
   <script defer src="js/rpg.js"></script>
+  <script defer src="js/game-common.js"></script>
   <!-- <script defer src="js-text/rpg_org.js"></script> -->
 </head>
 <body>
-
+  <a class="btn--home btn--exit" href="javascript:history.back();">나가기</a>
+  <img class="hero-image" src="./img/rpg-cha.png" alt="">
+  <div id="gameRule">
+    <img src="./img/character-moka-01.png" alt="character-moka" />
+    <div class="rule-explanation">
+      <h1 class="game-name">잡아라! 몬스터</h1>
+      <div class="game-rule">
+        <!-- <h2 class="game-rule__title">&#60; 게임 규칙 &#62;</h2> -->
+        <div class="game-rule__text">
+          <div class="text__item">
+            <span class="number">1</span>
+            <strong>일반 모드:</strong><br>
+            <p>
+              1. 모험하기: 몬스터와 만나 싸우는 '전투 모드' 로 전환됨 <br>
+              2. 휴식하기: 체력(hp)을 모두 회복 <br>
+              3. 초기화: 지금의 레벨(Lv)과 경험치(xp), 체력(hp) 모두 초기화
+            </p>
+          </div>
+          <div class="text__item">
+            <span class="number">2</span>
+              <strong>전투 모드:</strong><br>
+              <p>
+                1. 공격하기: 몬스터에게 공격을 하는 동시에 나도 몬스터에게 공격을 받음 <br>
+                2. 회복하기: 체력을 20hp 회복함(maxHp 까지만)과 동시에 몬스터에게 공격을 한 번 받음  <br>
+                3. 도망가기: 다시 '일반 모드' 로 전환됨 <br>
+              </p>
+          </div>
+          <div class="add">
+            - 패배: hp 가 전부 깎이면 패배 <br>
+            - 승리: 몬스터의 경험치(xp) 를 나의 경험치로 획득, 경험치 조건 달성시 레벨업 <br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="start">게임 시작하기</button>
+  </div>
+  <div class="overlay"></div>
   <form id="start-screen">
     <h4 class="hero-name">주인공의 이름을 입력하세요 !</h4>
     <input id="name-input" placeholder="ex) 귀요미 용사" />
@@ -21,7 +58,6 @@
     <div id="character-stat">
       <!-- 주인공 스탯 -->
       <div id="hero-stat">
-        <!-- <strong class="title">주인공 STAT</strong> -->
         <strong id="hero-name"></strong>
         <span id="hero-level"></span>
         <span id="hero-hp"></span><br>
@@ -30,10 +66,10 @@
       </div>
       <!-- 몬스터 스탯 -->
       <div id="monster-stat">
-        <!-- <strong class="title">몬스터 STAT</strong> -->
         <strong id="monster-name"></strong>
         <span id="monster-level"></span>
         <span id="monster-hp"></span>
+        <span id="monster-xp"></span>
         <span id="monster-att"></span>
       </div>
     </div>

@@ -1,8 +1,9 @@
 const $startScreen = document.querySelector('#start-screen');
 const $startScreenInput = document.querySelector('#start-screen input');
-const $startScreenOverlay = document.querySelector('.start-screen-overlay')
+const $startScreenOverlay = document.querySelector('.start-screen-overlay');
 const $changeNameBtn = document.querySelector('#change-hero-name');
 const $monsterImage = document.getElementById('monster-img');
+const $startBtn = document.querySelector('.start');
 
 // 메뉴
 // 일반 모드
@@ -28,11 +29,14 @@ const $heroAtt = document.querySelector('#hero-att');
 const $monsterName = document.querySelector('#monster-name');
 const $monsterLevel = document.querySelector('#monster-level');
 const $monsterHp = document.querySelector('#monster-hp');
+const $monsterXp = document.querySelector('#monster-xp');
 const $monsterAtt = document.querySelector('#monster-att');
 // 메시지
 const $message = document.querySelector('#message');
 
-$startScreenInput.focus();
+$startBtn.addEventListener('click', () => {
+  $startScreenInput.focus();
+});
 
 // (2) Hero 클래스 생성, 입력한 name 값을 인수로 받음
 class Game {
@@ -40,12 +44,12 @@ class Game {
     this.monster = null;
     this.hero = null;
     this.monsterList = [
-      { name: '슬라임', hp: 25, att: 10, xp: 10, lev: 3},
-      { name: '슬라임', hp: 25, att: 10, xp: 10, lev: 3},
-      { name: '슬라임', hp: 25, att: 10, xp: 10, lev: 3},
-      { name: '스켈레톤', hp: 50, att: 15, xp: 20, lev: 9},
-      { name: '스켈레톤', hp: 50, att: 15, xp: 20, lev: 9},
-      { name: '마왕', hp: 150, att: 35, xp: 50, lev: 20},
+      { name: '슬라임', hp: 25, att: 10, xp: 10, lev: 3 },
+      { name: '슬라임', hp: 25, att: 10, xp: 10, lev: 3 },
+      { name: '슬라임', hp: 25, att: 10, xp: 10, lev: 3 },
+      { name: '스켈레톤', hp: 50, att: 15, xp: 20, lev: 9 },
+      { name: '스켈레톤', hp: 50, att: 15, xp: 20, lev: 9 },
+      { name: '마왕', hp: 150, att: 35, xp: 50, lev: 20 },
     ];
     this.start(name);
   }
@@ -104,7 +108,9 @@ class Game {
     );
     console.log(this.monster);
     this.paintMonsterStat();
-    this.showMessage(`"몬스터가 나타났다! [ ${this.monster.name} ]인 것 같다!"`);
+    this.showMessage(
+      `"몬스터가 나타났다! [ ${this.monster.name} ]인 것 같다!"`
+    );
 
     // 몬스터 이미지 생성
     $monsterImage.style.display = 'block';
@@ -186,9 +192,8 @@ class Game {
     this.monster = null;
     this.paintMonsterStat();
     $monsterImage.style.display = 'none';
-  }
+  };
 
-  
   // Game class 내 메서드(3)
   paintHeroStat() {
     const { hero } = this;
@@ -212,12 +217,14 @@ class Game {
       $monsterName.textContent = '';
       $monsterLevel.textContent = '';
       $monsterHp.textContent = '';
+      $monsterXp.textContent = '';
       $monsterAtt.textContent = '';
       return;
     }
     $monsterName.textContent = `Monster: ${monster.name}`;
-    $monsterHp.textContent = `HP: ${monster.hp} / ${monster.maxHp}`;
     $monsterLevel.textContent = `Level: ${monster.lev}Lv`;
+    $monsterHp.textContent = `HP: ${monster.hp} / ${monster.maxHp}`;
+    $monsterXp.textContent = `XP: ${monster.xp}`;
     $monsterAtt.textContent = `ATT: ${monster.att}`;
   }
 

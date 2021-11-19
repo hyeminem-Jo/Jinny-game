@@ -26,6 +26,15 @@ body {
   align-items: center;
 }
 
+#gameRule {
+  width: 50%;
+
+  .game-rule {
+    margin-top: -10px;
+  }
+}
+
+
 #popUp {
   border-radius: 30px;
   overflow: hidden;
