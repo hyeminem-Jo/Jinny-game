@@ -1,4 +1,4 @@
-@import "./game-common.scss";
+@import "./game-rule.scss";
 
 @mixin center-po {
   position: absolute;
@@ -162,13 +162,10 @@ input {
         margin: 10px 0;
       }
 
-      #hero-level {
-        
-      }
+      #hero-level {}
 
-      #hero-level, #hero-hp {
-        
-      }
+      #hero-level,
+      #hero-hp {}
     }
 
     #monster-stat {
@@ -214,11 +211,19 @@ input {
         &:first-child {
           background-color: rgb(236, 40, 79);
           box-shadow: -5px -7px 10px rgb(126, 3, 28) inset;
+
+          &:hover {
+            box-shadow: -2px -4px 7px rgb(126, 3, 28) inset;
+          }
         }
 
         &:nth-child(2) {
           background-color: forestgreen;
           box-shadow: -5px -7px 10px rgb(10, 83, 10) inset;
+
+          &:hover {
+            box-shadow: -2px -4px 7px rgb(10, 83, 10) inset;
+          }
         }
       }
     }

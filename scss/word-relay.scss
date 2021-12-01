@@ -1,5 +1,5 @@
-// @import './font.scss';
-@import './game-common.scss';
+@import "./game-rule.scss";
+@import "./game-result.scss";
 
 body {
   background-color: rgba(238, 238, 238, 0.589);
@@ -194,5 +194,14 @@ body {
 #gameRule {
   img {
     transform: translateX(-50%) translateY(45px) scale(90%);
+  }
+}
+
+#popUp {
+  padding-top: 100px;
+  height: 360px;
+
+  .result {
+    font-size: 80px;
   }
 }

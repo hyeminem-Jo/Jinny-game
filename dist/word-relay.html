@@ -12,6 +12,7 @@
 
 <body>
   <a class="btn--home btn--exit" href="javascript:history.back();">나가기</a>
+  <!-- Game rule -->
   <div id="gameRule">
     <img src="/character-fred-01.69dedbd5.png" alt="character-fred">
     <div class="rule-explanation">
@@ -36,7 +37,20 @@
     </div>
     <button class="start">게임 시작하기</button>
   </div>
-  <div class="overlay"></div>
+  <!-- Popup -->
+  <div id="popUp" class="hidden">
+    <h1 class="result-box">
+      <span class="result"></span>
+      <span class="greeting"></span>
+      <span class="winner"></span>
+    </h1>
+    <div class="selector">
+      <a class="btn btn--redo" href="/word-relay.html">다시하기</a>
+      <a class="btn btn--exit" href="javascript:history.back();">나가기</a>
+    </div>
+  </div>
+  <div class="overlay hidden"></div>
+  <!-- Game screen -->
   <div class="word-relay">
     <img class="character" src="/wordrelay-cha.61e06f3c.png" alt="">
     <div class="participant">차례 : <span id="order">1</span> 번째 참가자 </div>

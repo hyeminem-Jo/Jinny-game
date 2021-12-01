@@ -2,6 +2,13 @@ const { body } = document;
 const $result = document.querySelector('.result');
 const $winner = document.querySelector('.winner');
 const $table = document.createElement('table');
+
+// 팝업창: 승리 여부
+const $popUp = document.querySelector('#popUp');
+const $greeting = document.querySelector('.greeting');
+const $answer = document.querySelector('.answer');
+const $overLay = document.querySelector('.overlay');
+
 const rows = [];
 let turn = 'O';
 
@@ -129,28 +136,3 @@ for (let i = 0; i < 3; i++) {
 $table.addEventListener('click', clickTd);
 
 body.append($table);
-// body.append($result);
-
-// 팝업창: 승리 여부
-const $popUp = document.querySelector('#popUp');
-const $greeting = document.querySelector('.greeting');
-const $answer = document.querySelector('.answer');
-const $overLay = document.querySelector('.overlay');
-
-// function defeated() {
-//   $popUp.classList.remove('hidden')
-//   const $emotionLose = document.querySelector('.emotion-lose')
-//   $emotionLose.classList.remove('hidden')
-//   $greeting.append(`아쉽네요`, document.createElement('br'))
-//   $result.prepend(`패배! 승자: ${turn}`, document.createElement('br'))
-//   $overLay.classList.remove('hidden')
-// }
-
-// function win() {
-//   $popUp.classList.remove('hidden')
-//   const $emotionWin = document.querySelector('.emotion-win')
-//   $emotionWin.classList.remove('hidden')
-//   $greeting.append(`축하합니다`, document.createElement('br'))
-//   $result.prepend(`승리! 승자: ${turn}`, document.createElement('br'))
-//   $overLay.classList.remove('hidden')
-// }

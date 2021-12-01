@@ -55,10 +55,6 @@ class Game {
   }
   // Game class 내 메서드(1)
   start(name) {
-    // input
-    // $gameMenu.addEventListener('submit', this.onGameMenuInput);
-    // $battleMenu.addEventListener('submit', this.onBattleMenuInput);
-
     // button
     // 일반 모드
     $btnAdventure.addEventListener('click', this.btnAdventureClicked);
