@@ -1,15 +1,60 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Card-Game</title>
-  <link rel="stylesheet" href="scss/card-game.scss">
-  <script defer src="js-text/card-game_text.js"></script>
-  <!-- <script defer src="js-text/card-game_org.js"></script> -->
-</head>
-<body>
-  <div id="wrapper"></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>카드 맞추기</title>
+    <link rel="stylesheet" href="scss/card-game.scss" />
+    <script defer src="./js/game-common.js"></script>
+    <script defer src="js/card-game.js"></script>
+  </head>
+  <body>
+    <a class="btn--home btn--exit" href="javascript:history.back();">나가기</a>
+  <!-- Game rule -->
+  <div id="gameRule">
+    <img class="rule-cha" src="./img/character-tina-03.png" alt="character-tina" />
+    <div class="rule-explanation">
+      <h1 class="game-name">카드를 맞춰라!</h1>
+      <div class="game-rule">
+        <h2 class="game-rule__title">&#60; 게임 규칙 &#62;</h2>
+        <p class="game-rule__text">
+          <span class="number">1</span>
+          랜덤으로 섞인 20 장의 트럼프 카드가 5초 동안 공개될 동안 같은 카드를 외운다. <br>
+          <span class="number">2</span>
+          카드가 다시 비공개되면 바로 카드를 두 장씩 뒤집어 짝이 맞는 카드를 찾는다. <br>
+          <div class="add">
+            - 카드 안의 도형의 모양과 숫자가 둘다 일치해야 같은 짝으로 인정된다.<br>
+            - 타이머가 시작되어 같은 짝인 카드를 모두 찾을 때까지 걸린 시간을 잰다. <br>
+          </div>
+        </p>
+      </div>
+    </div>
+    <button class="start">게임 시작하기</button>
+  </div>
+  <!-- Popup -->
+  <div id="popUp" class="hidden">
+    <h1 class="result-box">
+      <span class="greeting">축하합니다!</span>
+      <div class="title">게임 완료까지 걸린 시간:</div>
+      <span class="result"></span>
+    </h1>
+    <div class="selector">
+      <a class="btn btn--redo" href="./card-game.html">다시하기</a>
+      <a class="btn btn--exit" href="javascript:history.back();">나가기</a>
+    </div>
+  </div>
+  <div class="overlay"></div>
+    <!-- Game screen -->
+    <div id="wrapper">
+    </div>
+    <div class="timer">
+      <p class="title">⏲️ timer</p>
+      <div class="time-box">
+        <span id="time">0</span>
+        <span>초</span>
+      </div>
+    </div>
+    <img class="character" src="img/card-game-cha.png" alt="">
+  </body>
 </html>

@@ -1,17 +1,23 @@
 const $wrapper = document.querySelector('#wrapper');
 
-const total = 12;
-const colors = ['red', 'orange', 'yellow', 'green', 'white', 'pink'];
+// const total = 12;
+const total = parseInt(prompt('카드 개수를 짝수로 입력하세요. (최대 20개)'));
+const colors = ['red', 'orange', 'yellow', 'green', 'white', 'pink', 'cyan', 'violet', 'gray', 'black'];
 
 // 6 개의 색을 각각 하나씩 더 추가 (6 + 6)
 // concat() 을 통해 얕은 복사도 할 수 있다.
-let colorCopy = colors.concat(colors);
+
+// ex) 사용자가 카드 개수를 10장으로 선택하면, colors[] 에서 카드 색은 5종류 까지만 가져가고 나머지는 자른다.
+let colorSlice = colors.slice(0, total / 2);
+// 색 종류 하나씩 복사해서 2배로(10개) 불리기
+let colorCopy = colorSlice.concat(colorSlice);
 let shuffled = [];
 // 클릭된 카드, 두 개일 때 이벤트 발생 후 초기화
 let clicked = [];
 // 클릭된 카드 두개가 서로 일치할 때, 이미 사용된 카드들로 인지 후 분리
 let completed = [];
 let clickable = false;
+let startTime; // 처음 카드를 공개후 다시 뒤집은 시점에 시간 측정
 
 // 카드 무작위로 섞기
 function shuffle() {
@@ -48,20 +54,26 @@ function onClickCard() {
   // 카드 클릭 방지
   // 이미 짝맞춰진 카드 클릭 방지
   // 이미 방금 선택한 카드 클릭 방지
-  if (!clickable || completed.includes(this) || clicked[0] === this) { 
+  if (!clickable || completed.includes(this) || clicked[0] === this) {
     return;
   }
+
   this.classList.toggle('flipped'); // this: 누른 card
   clicked.push(this);
+
+  // 클릭한 카드가 두 장이 될 때 검사
+  // 뒤집은 카드 수가 2장이 아닐 때 << 왜 필요한가?
+  // 밑의 코드에서 querySelector('.card-back') 를 이중으로 쓰게되어 에러가 발생한다. 왜냐하면 처음 클릭으로 firstBack 의 쿼리셀렉터 발생 후 두번째 클릭을 하기 전에 같은 이름의 secondBack 의 쿼리 셀렉터는 undefined, 즉 정의되지 않은 상태이기 때문이다.
   if (clicked.length !== 2) {
-    // 클릭한 카드가 두 장이 될 때 검사
     return;
   }
+  
   const firstBackColor =
     clicked[0].querySelector('.card-back').style.backgroundColor;
   const secondBackColor =
     clicked[1].querySelector('.card-back').style.backgroundColor;
-  // 클릭한 두 카드 뒷면의 색이 일치할 때
+
+  // # 클릭한 두 카드 뒷면의 색이 일치할 때
   if (firstBackColor === secondBackColor) {
     completed = completed.concat(clicked);
     // clicked[] 에 들어간 일치되는 두 카드를 completed[] 에 저장
@@ -77,19 +89,25 @@ function onClickCard() {
       return;
     }
     // 일치된 카드가 전부 찼을 때
+    let endTime = new Date();
     setTimeout(() => {
-      alert('축하합니다!');
+      // 미래 시간 - 현재 시간
+      // 밀리 초 단위이므로 1000 나누기
+      alert(`축하합니다! ${(endTime - startTime) / 1000} 초 걸렸습니다.`);
       resetGame(); // 게임이 끝난 후 리셋됨
     }, 500);
     return;
   }
 
-  // 두 카드 뒷면의 색이 다를 때
+  // # 클릭한 두 카드 뒷면의 색이 다를 때
+  // 연속으로 4개가 클릭되었을 때
+  clickable = false;
   // setTimeout 으로 1초를 안주면 두 번째 카드가 열리기도 전에 (flipped 클래스가 제거되어) 첫번째, 두번째 카드가 바로 다시 뒤집어 지기 때문에 시간차를 주어야 한다.
   setTimeout(() => {
     clicked[0].classList.remove('flipped');
     clicked[1].classList.remove('flipped');
     clicked = [];
+    clickable = true;
   }, 1000);
 }
 
@@ -112,12 +130,14 @@ function startGame() {
       card.classList.add('flipped');
     }, 1000 + 100 * index);
   });
+
   // 일정시간 후 다시 비공개(뒤집기)
   setTimeout(() => {
     document.querySelectorAll('.card').forEach((card) => {
       card.classList.remove('flipped');
     });
     clickable = true; // 카드 세팅이 완료되었을 때 클릭할 수 있음
+    startTime = new Date();
   }, 5000);
 }
 
@@ -126,7 +146,7 @@ startGame();
 function resetGame() {
   $wrapper.innerHTML = '';
   // colorCopy 는 splice 로 인해 원본이 바뀌었기 때문에 초기화 해주어야함
-  colorCopy = colors.concat(colors);
+  colorCopy = colorSlice.concat(colorSlice);
   shuffled = [];
   completed = [];
   startGame();

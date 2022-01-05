@@ -3,7 +3,6 @@ const $gameRule = document.querySelector('#gameRule')
 const $overLay = document.querySelector('.overlay')
 const $exitBtn = document.querySelector('.btn--exit')
 
-
 // 게임 룰 
 function hideGameRule() {
   $gameRule.classList.add('hidden')

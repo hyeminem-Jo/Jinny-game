@@ -1,0 +1,79 @@
+#table {
+  border-collapse: collapse;
+  user-select: none; 
+  // user-select: none;
+  // => 드래그를 막는 효과 (드래그 시 블록이 씌워지는 기능 방지)
+
+  td {
+    border: 10px solid #bbada0;
+    width: 116px;
+    height: 128px;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+#score {
+  user-select: none;
+  font-size: 60px;
+}
+
+#back {
+  font-size: 50px;
+}
+
+.color-2 {
+  background-color: #eee4da;
+  color: #776e65;
+}
+
+.color-4 {
+  background-color: #eee1c9;
+  color: #776e65;
+}
+
+.color-8 {
+  background-color: #f3b27a;
+  color: #fff;
+}
+
+.color-16 {
+  background-color: #f69664;
+  color: #fff;
+}
+
+.color-32 {
+  background-color: #f77c5f;
+  color: #fff;
+}
+
+.color-64 {
+  background-color: #f75f3b;
+  color: #fff;
+}
+
+.color-128 {
+  background-color: #edd073;
+  color: #776e65;
+}
+
+.color-256 {
+  background-color: #edcc62;
+  color: #776e65;
+}
+
+.color-512 {
+  background-color: #edc950;
+  color: #776e65;
+}
+
+.color-1024 {
+  background-color: #edc53f;
+  color: #776e65;
+}
+
+.color-512 {
+  background-color: #edc22e;
+  color: #776e65;
+}

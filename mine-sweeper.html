@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>지뢰 찾기</title>
+  <link rel="stylesheet" href="scss/mine-sweeper.scss" />
+  <script defer src="js/mine-sweeper.js"></script>
+  <script defer src="js/game-common.js"></script>
+</head>
+
+<body>
+  <!-- <form id="form-difficulty">
+      <button>지뢰 찾기 시작</button>
+    </form> -->
+  <a class="btn--home btn--exit" href="javascript:history.back();">나가기</a>
+  <!-- Game rule -->
+  <div id="gameRule">
+    <img src="./img/character-fred-01.png" alt="character-fred" />
+    <div class="rule-explanation">
+      <h1 class="game-name">지뢰를 찾아라!</h1>
+      <div class="game-rule">
+        <h2 class="game-rule__title">&#60; 게임 규칙 &#62;</h2>
+        <p class="game-rule__text">
+          <span class="number">1</span>
+          3*3 으로 이루어진 여덟 칸 중 중심칸 하나에는 나머지 칸들에 있는 지뢰의 수가 나타난다. <br>
+          <span class="number">2</span>
+          칸에 있는 주변 지뢰 개수를 파악해 지뢰를 피해서 빈 칸만 골라 클릭한다.<br>
+          <span class="number">3</span>
+          모든 빈 칸을 클릭하면 승리한다.<br>
+          <div class="add">
+            - 지뢰가 있다고 예상하는 곳에 우클릭을 한 번 하여 물음표를 새긴다. <br>
+            - 지뢰가 있다고 확신하는 곳에 우클릭을 두 번 하여 깃발을 꽂는다.<br>
+            - 지뢰를 클릭하면 게임에서 패배한다.<br>
+          </div>
+        </p>
+      </div>
+    </div>
+    <button class="start">게임 시작하기</button>
+  </div>
+  <!-- Popup -->
+  <div id="popUp" class="hidden">
+    <h1 class="result-box">
+      <span class="greeting">축하합니다!</span>
+      <div class="title">게임 종료까지 걸린 시간:</div>
+      <span class="result">0</span>
+      <div class="emotion emotion-lose hidden">
+        <img src="./img/emotion-lose.png" alt="">
+        <img src="./img/emotion-lose.png" alt="">
+      </div>
+    </h1>
+    <div class="selector">
+      <a class="btn btn--redo" href="./mine-sweeper.html">다시하기</a>
+      <a class="btn btn--exit" href="javascript:history.back();">나가기</a>
+    </div>
+  </div>
+  <div class="overlay"></div>
+  <div class="timer">
+    <p class="title">⏲️ timer</p>
+    <div class="time-box">
+      <span id="time">0</span>
+      <span>초</span>
+    </div>
+  </div>
+  <table id="table">
+    <tbody></tbody>
+  </table>
+  <img class="charactor" src="img/mine-sweeper-cha.png" alt="">
+</body>
+
+</html>

@@ -1,37 +1,153 @@
-.card {
-  display: inline-block;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  width: 70px;
-  height: 100px;
-  perspective: 140px;
+@import "./game-rule.scss";
+@import "./game-result.scss";
+
+body {
+  background: url('/img/card-game-bg.jpg') no-repeat;
+  background-size: 100%;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
 }
 
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
+.character {
+  transform: scale(0.4);
+  position: absolute;
+  top: 85px;
+  left: -200px;
+}
+
+.timer {
+  position: absolute;
+  top: 130px; // 100
+  left: 200px;
+
+  .title {
+    font-size: 50px;
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: 10px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .time-box {
+    border: 6px solid blueviolet;
+    background-color: #fff;
+    border-radius: 30px;
+    width: 200px;
+    padding: 10px 30px;
+    font-size: 50px;
+    font-weight: 600;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+
+    span {
+      color: #333;
+      float: left;
+    }
+
+    #time {
+      display: block;
+      width: 50%;
+      color: chocolate;
+    }
+  }
+}
+
+#wrapper {
+  position: absolute;
+  width: 700px;
+  top: 120px;
+  right: 50px;
+
+  .card {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 100px;
+    height: 170px;
+    perspective: 140px;
+    cursor: pointer;
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .card-front {
+      // background: navy;
+      background: url('/img/card-front.png') no-repeat;
+      background-size: 100%;
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.63);
+      backface-visibility: hidden;
+      border-radius: 5px;
+    }
+
+    .card-back {
+      transform: rotateX(180deg);
+      position: relative;
+    }
+
+    &:hover .card-front::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.247);
+    }
+  }
 }
 
 .card.flipped .card-inner {
   transform: rotateY(180deg);
 }
 
-.card-front {
-  background: navy;
+.card-back.card-a {
+  background: url('/img/card-A.png') center no-repeat;
+  background-size: 100%;
 }
 
-.card-front, .card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 1px solid black;
-  backface-visibility: hidden;
+@for $i from 2 through 10 {
+  .card-back.card-#{$i} {
+    background: url('/img/card-#{$i}.png') center no-repeat;
+    background-size: 100%;
+  }
 }
 
-.card-back {
-  transform: rotateX(180deg);
+#gameRule {
+  img {
+    transform: translateX(-50%) translateY(15px) scale(80%);
+  }
+}
+
+#popUp {
+  .greeting {
+    font-size: 30px;
+    color: #aaa;
+  }
+
+  .title {
+    font-size: 50px;
+    margin: 30px 0 13px 0px;
+  }
+
+  .result {
+    color: orange;
+  }
 }
