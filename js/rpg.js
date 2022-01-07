@@ -175,6 +175,14 @@ class Game {
     hero.hp = Math.min(hero.maxHp, hero.hp + 20);
     // 패널티: 회복 하는 도중, 몬스터에게 공격을 한 번 당함
     monster.attack(hero);
+    // 회복 도중 공격 당해 죽었을 때
+    // git commit -m 'Feat: 몬스터 잡기 게임 에러 고침'
+    if (hero.hp <= 0) {
+      this.showMessage(`"${hero.lev} 레벨에서 전사. 새 주인공을 생성하세요!"`);
+      this.quit();
+      $monsterImage.style.display = 'none';
+    }
+    
     this.showMessage(
       `"체력을 조금 회복했다.. 하지만, 방심한 틈에 공격을 당해버렸다!"`
     );

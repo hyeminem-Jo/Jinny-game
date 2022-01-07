@@ -92,8 +92,9 @@ function onClickCard() {
 
     // 일치된 카드가 전부 찼을 때
     let endTime = new Date();
+    $startBtn.removeEventListener('click', startGame);
+    clearInterval(timerId);
     setTimeout(() => {
-      clearInterval(timerId);
       $popUp.classList.remove('hidden');
       $overLay.classList.remove('hidden');
       $result.textContent = `${Math.floor((endTime - startTime) / 1000)} 초`
@@ -151,9 +152,7 @@ function startGame() {
   }, 5000)
 }
 
-$startBtn.addEventListener('click', () => {
-  startGame();
-})
+$startBtn.addEventListener('click', startGame);
 
 // gameRule 읽음 되어있으면 바로 게임 시작
 const savedRead = localStorage.getItem('readOrNot')
@@ -167,5 +166,4 @@ function resetGame() {
   cardCopy = [];
   completed = [];
   time = 0;
-  startGame();
 }

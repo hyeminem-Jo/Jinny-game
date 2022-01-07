@@ -340,6 +340,7 @@ function onLeftClick(event) {
     clearInterval(interval); // 타이머 종료
     $tbody.removeEventListener('contextmenu', onRightClick);
     $tbody.removeEventListener('click', onLeftClick);
+    // 결과 팝업창 띄우기
     setTimeout(() => {
       $popUp.classList.remove('hidden');
       $overLay.classList.remove('hidden');
