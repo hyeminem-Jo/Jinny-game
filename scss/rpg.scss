@@ -83,6 +83,7 @@ input {
   .hero-name {
     font-size: 35px;
     margin: 20px;
+    text-align: center;
   }
 
   #name-input {
@@ -155,6 +156,7 @@ input {
     }
 
     #hero-stat {
+      width: 50%;
       margin-left: 30px;
 
       #hero-name {

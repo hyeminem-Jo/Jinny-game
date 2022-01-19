@@ -120,11 +120,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"js/word-relay.js":[function(require,module,exports) {
 var $em = document.querySelector('.suggestion em');
 var $startBtn = document.querySelector('.start');
-$startBtn.addEventListener('click', gameStart); // 팝업창: 승리 여부
-
+var $gameRule = document.querySelector('#gameRule');
+var $overLay = document.querySelector('.overlay');
+var $exitBtn = document.querySelector('.btn--exit');
 var $popUp = document.querySelector('#popUp');
 var $greeting = document.querySelector('.greeting');
-var $result = document.querySelector('.result'); // const $overLay = document.querySelector('.overlay');
+var $result = document.querySelector('.result');
 
 function gameStart() {
   var numOfUser = Number(prompt('참가자 수를 입력하세요')); // 참여자 수가 입력되면 게임 시작
@@ -211,42 +212,15 @@ function gameStart() {
       this.setAttribute('placeholder', '단어를 입력하세요');
     });
   } else if (isNaN(numOfUser)) {
-    alert('숫자를 입력해주세요'); // numOfUser = Number(prompt("참가자 수를 입력하세요"))
-
-    document.querySelector('body > *').remove();
-  } else {
-    document.querySelector('body > *').remove();
+    alert('숫자를 입력해주세요');
+    window.location.reload();
+  } else if (!numOfUser) {
+    alert('참가자 수가 입력되지 않았습니다.');
+    window.location.reload();
   }
 }
 
-var $gameRule = document.querySelector('#gameRule');
-var $overLay = document.querySelector('.overlay');
-var $exitBtn = document.querySelector('.btn--exit'); // 게임 룰
-
-function hideGameRule() {
-  $gameRule.classList.add('hidden');
-  $overLay.classList.add('hidden');
-} // 게임 시작하기
-
-
-$startBtn.addEventListener('click', function () {
-  hideGameRule();
-  localStorage.setItem('readOrNot', 'read');
-}); // gameRule 읽음 여부 확인
-
-var savedRead = localStorage.getItem('readOrNot');
-
-if (savedRead !== null) {
-  hideGameRule();
-  gameStart();
-} else {
-  $gameRule.classList.remove('hidden');
-  $overLay.classList.remove('hidden');
-}
-
-$exitBtn.addEventListener('click', function () {
-  localStorage.removeItem('readOrNot');
-});
+$startBtn.addEventListener('click', gameStart);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -275,7 +249,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63101" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54136" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

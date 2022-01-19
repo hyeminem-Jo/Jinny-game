@@ -1,13 +1,11 @@
 const $em = document.querySelector('.suggestion em');
-
 const $startBtn = document.querySelector('.start');
-$startBtn.addEventListener('click', gameStart);
-
-// 팝업창: 승리 여부
+const $gameRule = document.querySelector('#gameRule');
+const $overLay = document.querySelector('.overlay');
+const $exitBtn = document.querySelector('.btn--exit');
 const $popUp = document.querySelector('#popUp');
 const $greeting = document.querySelector('.greeting');
 const $result = document.querySelector('.result');
-// const $overLay = document.querySelector('.overlay');
 
 function gameStart() {
   const numOfUser = Number(prompt('참가자 수를 입력하세요'));
@@ -94,39 +92,11 @@ function gameStart() {
     });
   } else if (isNaN(numOfUser)) {
     alert('숫자를 입력해주세요');
-    // numOfUser = Number(prompt("참가자 수를 입력하세요"))
-    document.querySelector('body > *').remove();
-  } else {
-    document.querySelector('body > *').remove();
+    window.location.reload();
+  } else if (!numOfUser) {
+    alert('참가자 수가 입력되지 않았습니다.');
+    window.location.reload();
   }
 }
 
-const $gameRule = document.querySelector('#gameRule');
-const $overLay = document.querySelector('.overlay');
-const $exitBtn = document.querySelector('.btn--exit');
-
-// 게임 룰
-function hideGameRule() {
-  $gameRule.classList.add('hidden');
-  $overLay.classList.add('hidden');
-}
-
-// 게임 시작하기
-$startBtn.addEventListener('click', () => {
-  hideGameRule();
-  localStorage.setItem('readOrNot', 'read');
-});
-
-// gameRule 읽음 여부 확인
-const savedRead = localStorage.getItem('readOrNot');
-if (savedRead !== null) {
-  hideGameRule();
-  gameStart();
-} else {
-  $gameRule.classList.remove('hidden');
-  $overLay.classList.remove('hidden');
-}
-
-$exitBtn.addEventListener('click', () => {
-  localStorage.removeItem('readOrNot');
-});
+$startBtn.addEventListener('click', gameStart);

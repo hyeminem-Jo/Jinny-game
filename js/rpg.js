@@ -95,7 +95,7 @@ class Game {
     const randomMonster = this.monsterList[randomIndex];
 
     this.monster = new Monster(
-      this,
+      this, // game
       randomMonster.name,
       randomMonster.hp,
       randomMonster.att,
@@ -174,6 +174,7 @@ class Game {
     // 조건: 회복 20을 해도, maxHp 를 넘어갈 수 없다.
     hero.hp = Math.min(hero.maxHp, hero.hp + 20);
     // 패널티: 회복 하는 도중, 몬스터에게 공격을 한 번 당함
+    // Math.min(): maxHp 를 넘을 수 없게 방지
     monster.attack(hero);
     // 회복 도중 공격 당해 죽었을 때
     // git commit -m 'Feat: 몬스터 잡기 게임 에러 고침'

@@ -7,11 +7,15 @@ const $$cells = document.querySelectorAll('.cell');
 
 // 구멍 
 const holes = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+// 3 * 3 의 2차원 배열이 아닌 1차원 배열로 나열
 let started = false;
+// 한번만 작동하는 것은 flag 변수로 만들어주기
+// => 한번 만 시작하기 후 시작하기 작동 금지
 let score = 0;
 let time = 10;
 let life = 3;
-
+// 게임 오버, 종료시 타이머 등을 제거해주어야함
+// 전역으로 선언을 해주어야 타이머 변수를 스코프 바깥에서도 제거할 수 있음
 let timerId;
 let tickId;
 
@@ -21,7 +25,10 @@ $start.addEventListener('click', () => {
   console.log('시작');
   // 타이머 (0.1 초씩 깎이기)
   timerId = setInterval(() => {
-    time = (time * 10 - 1) / 10; 
+    time = (time * 10 - 1) / 10; // 소수점 계산 시 문제있음
+    // time = time - 0.1 와 같이 소수점 계산 시 문제있음
+    // 이유: 컴퓨터는 소수점이나 음수 같은 경우 잘 계산이 안될 때가 있기 때문에, 다음과 같이 정수로 바꿔준 후 10 으로 나누어 준다.
+    // ex) 소수점 둘째 자리 경우 * 100, 셋째 자리 경우 * 1000 ...
     $timer.textContent = time;
 
     // 타임 오버
@@ -31,7 +38,7 @@ $start.addEventListener('click', () => {
         clearInterval(tickId);
         alert(`TIME OVER! 잡은 두더지 수:${score}`);
         // 게임 재시작
-        window.location.reload();
+        // window.location.reload();
       }, 50); // alert 가 화면을 그리는 것을 막을 수 있기 때문에
     }
   }, 100)
@@ -80,6 +87,10 @@ $$cells.forEach(($cell, index) => {
   // 두더지 클릭
   $cell.querySelector('.gopher').addEventListener('click', (event) => {
     // 두더지 클릭 시 점수 누적
+    // 같은 두더지 여러 번 클릭시 점수 누적되는 버그 막기
+    // 두더지 하나당 점수 1점씩만 부여
+    // 이미 dead 된 이후로는 점수 부여x
+    // add('dead') 코드보다 위에 위치해야함
     if (!event.target.classList.contains('dead')) {
       score += 1;
       $score.textContent = score;
@@ -87,6 +98,7 @@ $$cells.forEach(($cell, index) => {
     event.target.classList.add('dead'); // 죽은 이미지로 변경
     event.target.classList.add('hidden'); // 클릭 시 바로 내려가게함 
     clearTimeout(holes[index]); // 기존 내려가는 타이머 제거
+    // 이유: 기존의 타이머는 요소가 굴에서 1초 뒤에 사라지게 해놨는데, 요소를 클릭하면 클릭 직후에 사라지게 해야하므로
     setTimeout(() => {
       holes[index] = 0;
       // 1초 뒤에 클래스 dead 제거 (두더지 리셋)

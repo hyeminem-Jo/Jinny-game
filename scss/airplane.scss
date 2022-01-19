@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#game {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  border: 10px solid gray;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+@mixin hp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+}
+
+@mixin hp-box {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// 아군
+.airplane {
+  position: absolute;
+  display: inline-block;
+  top: 350px;
+  left: 10%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #aaa;
+
+  // 아군 체력
+  .airplane-hp-box {
+    @include hp-box;
+    width: 130px;
+    height: 20px;
+    border: 3px solid #bbb;
+
+    .airplane-hp {
+      @include hp;
+      background: gold;
+    }
+  }
+}
+
+// 적군
+.alien {
+  position: absolute;
+  display: inline-block;
+  border-radius: 50%;
+  right: 10px;
+
+  // 적군 체력
+  .alien-hp-box {
+    @include hp-box;
+    width: 130px;
+    height: 20px;
+    background: #fff;
+    border: 3px solid gray;
+
+    .alien-hp {
+      @include hp;
+    }
+  }
+}
+
+.small-alien {
+  width: 80px;
+  height: 80px;
+  background: orange;
+
+  .alien-hp {
+    background: #bbb;
+  }
+}
+
+.mideum-alien {
+  width: 110px;
+  height: 110px;
+  background: rgb(255, 90, 31);
+
+  .alien-hp {
+    background: #bbb;
+  }
+}
+
+.big-alien {
+  width: 140px;
+  height: 140px;
+  background: rgb(180, 6, 41);
+
+  .alien-hp {
+    background: #bbb;
+  }
+}
