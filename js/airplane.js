@@ -12,7 +12,7 @@ class Game {
   constructor() {
     this.alien = [];
     this.airplane = null;
-    this.monsterList = [
+    this.alienList = [
       { name: '쪼렙', hp: 10, att: 10 },
       { name: '쪼렙', hp: 10, att: 10 },
       { name: '쪼렙', hp: 10, att: 10 },
@@ -44,11 +44,11 @@ class Game {
   }
 
   createAlien = () => {
-    // 랜덤 숫자로 외계인 수 생성하기 (최대 5마리까지 생성)
+    // 랜덤 숫자로 외계인 수 생성하기 (최대 6마리까지 생성)
     for (let i = 0; i < Math.floor(Math.random() * 6) + 2; i++) {
       // 랜덤으로 외계인 뽑기
-      const randomIndex = Math.floor(Math.random() * this.monsterList.length);
-      const randomAlien = this.monsterList[randomIndex];
+      const randomIndex = Math.floor(Math.random() * this.alienList.length);
+      const randomAlien = this.alienList[randomIndex];
 
       // 랜덤으로 뽑힌 외계인들 삽입
       this.alien[i] = new Alien(
@@ -77,9 +77,8 @@ class Game {
         alien.remove();
       });
 
-      this.alien.filter((alien) => {
-        true;
-      });
+      this.alien = [];
+      console.log(this.alien);
     }, 5500);
 
     // 화면 밖 외계인 화면 밖으로 나가면 전부 없애기 (미해결)
@@ -134,6 +133,7 @@ class Game {
   // 원인: $alien 이 다 같게 인식되므로 반복문을 돌 때마다 앞서 지정된 setInterval 에서 새로운 setInterval 로 덮어씌워지기 때문에 결국 맨 마지막에 덮어씌워진 setInterval 의 속력으로 모든 alien 이 동일한 속력이 난다.
   // 시도: 반복문으로 모든 alien 들이 $$aliens[] 에 생성된 후, $$aliens 에 forEach() 를 써서 contains 으로 클래스를 구별, speed 를 지정해준다. >> 실패
   // 차선책: 외계인들 모두 동일한 속력으로 방치
+
 
   // 화면 표시 - 외계인
   paintAlien(i) {
