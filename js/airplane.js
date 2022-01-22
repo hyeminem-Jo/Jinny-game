@@ -6,6 +6,7 @@ let alienPoX = 10;
 let smallSpeed;
 let mideumSpeed;
 let bigSpeed;
+let removeId;
 
 class Game {
   constructor() {
@@ -63,10 +64,45 @@ class Game {
 
     // 외계인 속도 지정
     this.controlSpeed();
+    // 외계인 없애기
+    this.removeAlien();
     console.log(this.alien);
   };
 
-  // 외계인 속도 지정 => 문제 미해결
+  // 화면 밖 외계인 전부 없애기 (미해결(2))
+  removeAlien() {
+    removeId = setTimeout(() => {
+      const $$aliens = document.querySelectorAll('.alien');
+      $$aliens.forEach((alien, i) => {
+        alien.remove();
+      });
+
+      this.alien.filter((alien) => {
+        true;
+      });
+    }, 5500);
+
+    // 화면 밖 외계인 화면 밖으로 나가면 전부 없애기 (미해결)
+    // 문제: 원래 외계인마다 속력을 다 다르게 주려 하였고, 속력에 따라 화면 밖으로 빠져나가는 시간도 다르게 하려고 하였지만 안됐다.
+    // 원인: 원인 불명
+    // 시도: position right 값이 1500px 이상이 되는 조건에 따라 외계인을 차례로 사라지게 하려 하였으나 작동하지 않았다. => 실패
+    // 차선책: 시간이 지남에 따라 사라지도록 수정
+
+    // const $$aliens = document.querySelectorAll('.alien');
+    // setTimeout(() => {
+    //   $$aliens.forEach((alien, i) => {
+    //     const right = parseInt(alien.style.right.replace('px', ''));
+    //     // right.replace('px','');
+    //     if (right > 500) {
+    //       alien.remove();
+    //       alert('alien 500 넘음');
+    //     }
+    //     console.log(right);
+    //   });
+    // }, 1000);
+  }
+
+  // 외계인 속도 지정 차선책 (미해결(1))
   controlSpeed() {
     const $$aliens = document.querySelectorAll('.alien');
     console.log($$aliens); // NodeList
@@ -93,6 +129,12 @@ class Game {
     });
   }
 
+  // 외계인에 따라 다른 속도 부여 (미해결)
+  // 문제: alien 모두 동일한 속력이 난다.
+  // 원인: $alien 이 다 같게 인식되므로 반복문을 돌 때마다 앞서 지정된 setInterval 에서 새로운 setInterval 로 덮어씌워지기 때문에 결국 맨 마지막에 덮어씌워진 setInterval 의 속력으로 모든 alien 이 동일한 속력이 난다.
+  // 시도: 반복문으로 모든 alien 들이 $$aliens[] 에 생성된 후, $$aliens 에 forEach() 를 써서 contains 으로 클래스를 구별, speed 를 지정해준다. >> 실패
+  // 차선책: 외계인들 모두 동일한 속력으로 방치
+
   // 화면 표시 - 외계인
   paintAlien(i) {
     const $alien = document.createElement('div');
@@ -116,43 +158,6 @@ class Game {
     } else if (this.alien[i].name === '만렙') {
       $alien.classList.add('big-alien');
     }
-
-    // 외계인 속도 구분
-    // 문제: alien 모두 동일한 속력이 난다.
-    // 원인: $alien 이 다 같게 인식되므로 반복문을 돌 때마다 앞서 지정된 setInterval 에서 새로운 setInterval 로 덮어씌워지기 때문에 결국 맨 마지막에 덮어씌워진 setInterval 의 속력으로 모든 alien 이 동일한 속력이 난다.
-    // 해결:
-    // 반복문으로 모든 alien 들이 $$aliens[] 에 생성된 후, $$aliens 에 forEach() 를 써서 contains 으로 클래스를 구별, speed 를 지정해준다. >> 안됨
-
-    // 외계인 속도 구분
-    // if (this.alien[i].name === '쪼렙') {
-    //   $alien.classList.add('small-alien');
-    //   const $$smallAlien = document.querySelectorAll('.small-alien');
-    //   $$smallAlien.forEach((alien) => {
-    //     smallSpeed = setInterval(() => {
-    //       alien.style.right = `${alienPoX}px`;
-    //       alienPoX += 1;
-    //     }, 10);
-    //   })
-    // } else if (this.alien[i].name === '중렙') {
-    //   $alien.classList.add('mideum-alien');
-    //   const $$mideumAlien = document.querySelectorAll('.mideum-alien');
-    //   $$mideumAlien.forEach((alien) => {
-    //     mideumSpeed = setInterval(() => {
-    //       alien.style.right = `${alienPoX}px`;
-    //       alienPoX += 1;
-    //     }, 50);
-    //   })
-    // } else if (this.alien[i].name === '만렙') {
-    //   $alien.classList.add('big-alien');
-    //   const $$bigAlien = document.querySelectorAll('.big-alien');
-    //   $$bigAlien.forEach((alien) => {
-    //     bigSpeed = setInterval(() => {
-    //       alien.style.right = `${alienPoX}px`;
-    //       alienPoX += 1;
-    //     }, 80);
-    //   })
-    // }
-
   }
 }
 
