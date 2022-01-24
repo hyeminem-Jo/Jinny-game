@@ -1,12 +1,21 @@
 const $game = document.querySelector('#game');
 const $start = document.querySelector('#start');
-const $$aliens = document.querySelectorAll('.alien');
+// const $airplane = document.querySelector('.airplane');
+// const $$aliens = document.querySelectorAll('.alien');
 
 let alienPoX = 10;
 let smallSpeed;
 let mideumSpeed;
 let bigSpeed;
 let removeId;
+
+let airplaneCoordsX;
+let airplaneCoordsY;
+let alienCoordsX = [];
+let alienCoordsY = [];
+
+// let windowWidth = window.innerWidth;
+// let windowHeight = window.innerHeight;
 
 class Game {
   constructor() {
@@ -26,10 +35,12 @@ class Game {
     this.paintAirplane();
     this.createAlien();
     this.controlSpeed();
+    this.crashAlien();
+    
   }
 
   // 화면 표시 - 아군
-  paintAirplane() {
+  paintAirplane = () => {
     const $airplane = document.createElement('div');
     const $airplaneHpBox = document.createElement('div');
     const $airplaneHp = document.createElement('div');
@@ -70,7 +81,7 @@ class Game {
   };
 
   // 화면 밖 외계인 전부 없애기 (미해결(2))
-  removeAlien() {
+  removeAlien = () => {
     removeId = setTimeout(() => {
       const $$aliens = document.querySelectorAll('.alien');
       $$aliens.forEach((alien, i) => {
@@ -79,7 +90,7 @@ class Game {
 
       this.alien = [];
       console.log(this.alien);
-    }, 5500);
+    }, 8000);
 
     // 화면 밖 외계인 화면 밖으로 나가면 전부 없애기 (미해결)
     // 문제: 원래 외계인마다 속력을 다 다르게 주려 하였고, 속력에 따라 화면 밖으로 빠져나가는 시간도 다르게 하려고 하였지만 안됐다.
@@ -102,7 +113,7 @@ class Game {
   }
 
   // 외계인 속도 지정 차선책 (미해결(1))
-  controlSpeed() {
+  controlSpeed = () => {
     const $$aliens = document.querySelectorAll('.alien');
     console.log($$aliens); // NodeList
     $$aliens.forEach((alien) => {
@@ -136,12 +147,13 @@ class Game {
 
 
   // 화면 표시 - 외계인
-  paintAlien(i) {
+  paintAlien = (i) => {
     const $alien = document.createElement('div');
     const $alienHpBox = document.createElement('div');
     const $alienHp = document.createElement('div');
 
     $alien.className = 'alien';
+    $alien.classList.add(`alien${i}`);
     $alienHpBox.className = 'alien-hp-box';
     $alienHp.className = 'alien-hp';
 
@@ -159,6 +171,28 @@ class Game {
       $alien.classList.add('big-alien');
     }
   }
+
+  // 키 움직임 이벤트 때마다 발동되도록 하기! >> 좌표(coords) 갱신
+  crashAlien = () => {
+    const $airplane = document.querySelector('.airplane');
+    const $$aliens = document.querySelectorAll('.alien');
+    airplaneCoordsX =  $airplane.getBoundingClientRect().right;
+    airplaneCoordsY =  $airplane.getBoundingClientRect().bottom;
+
+    $$aliens.forEach((alien, i) => {
+      if (alien.classList.contains(`alien${i}`)) {
+        alienCoordsX[i] = alien.getBoundingClientRect().right;
+        alienCoordsY[i] = alien.getBoundingClientRect().bottom;
+      }
+    })
+    
+    // if () {
+      
+      // }
+      console.log(airplaneCoordsX, airplaneCoordsY, alienCoordsX, alienCoordsY);
+  }
+
+
 }
 
 // 공통

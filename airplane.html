@@ -28,3 +28,9 @@
 
 <!-- 체력 표시: hp 가 30인 상황에서 15가 된다면 
 [Hp width] = Math.floor((Hp / maxHp) * 100) + "%" -->
+
+<!-- 외계인과 충돌 이벤트
+  마닿는 조건: 
+  x 좌표: (비행기의 client right 값) => (외계인의 client right 값) + (외계인 width) &&
+  y 좌표: (비행기의 client bottom 값) => (외계인의 client bottom 값) + (외계인 height)
+-->
