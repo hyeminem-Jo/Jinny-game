@@ -35,8 +35,7 @@ class Game {
     this.paintAirplane();
     this.createAlien();
     this.controlSpeed();
-    this.crashAlien();
-    
+    // this.crashAlien();
   }
 
   // 화면 표시 - 아군
@@ -52,7 +51,7 @@ class Game {
     $airplaneHpBox.appendChild($airplaneHp);
     $airplane.appendChild($airplaneHpBox);
     $game.appendChild($airplane);
-  }
+  };
 
   createAlien = () => {
     // 랜덤 숫자로 외계인 수 생성하기 (최대 6마리까지 생성)
@@ -110,41 +109,46 @@ class Game {
     //     console.log(right);
     //   });
     // }, 1000);
-  }
+  };
 
   // 외계인 속도 지정 차선책 (미해결(1))
+  // https://donggov.tistory.com/154
+  // https://imki123.github.io/posts/33/
   controlSpeed = () => {
     const $$aliens = document.querySelectorAll('.alien');
     console.log($$aliens); // NodeList
+
     $$aliens.forEach((alien) => {
       if (alien.classList.contains('small-alien')) {
         // alien.classList.add('Im-small');
         smallSpeed = setInterval(() => {
           alien.style.right = `${alienPoX}px`;
           alienPoX += 1;
+          this.crashAlien();
         }, 30);
       } else if (alien.classList.contains('mideum-alien')) {
         // alien.classList.add('Im-mideum');
         mideumSpeed = setInterval(() => {
           alien.style.right = `${alienPoX}px`;
           alienPoX += 1;
+          this.crashAlien();
         }, 30);
       } else if (alien.classList.contains('big-alien')) {
         // alien.classList.add('Im-big');
         bigSpeed = setInterval(() => {
           alien.style.right = `${alienPoX}px`;
           alienPoX += 1;
+          this.crashAlien();
         }, 30);
       }
     });
-  }
+  };
 
   // 외계인에 따라 다른 속도 부여 (미해결)
   // 문제: alien 모두 동일한 속력이 난다.
   // 원인: $alien 이 다 같게 인식되므로 반복문을 돌 때마다 앞서 지정된 setInterval 에서 새로운 setInterval 로 덮어씌워지기 때문에 결국 맨 마지막에 덮어씌워진 setInterval 의 속력으로 모든 alien 이 동일한 속력이 난다.
   // 시도: 반복문으로 모든 alien 들이 $$aliens[] 에 생성된 후, $$aliens 에 forEach() 를 써서 contains 으로 클래스를 구별, speed 를 지정해준다. >> 실패
   // 차선책: 외계인들 모두 동일한 속력으로 방치
-
 
   // 화면 표시 - 외계인
   paintAlien = (i) => {
@@ -170,29 +174,34 @@ class Game {
     } else if (this.alien[i].name === '만렙') {
       $alien.classList.add('big-alien');
     }
-  }
+  };
 
   // 키 움직임 이벤트 때마다 발동되도록 하기! >> 좌표(coords) 갱신
   crashAlien = () => {
     const $airplane = document.querySelector('.airplane');
     const $$aliens = document.querySelectorAll('.alien');
-    airplaneCoordsX =  $airplane.getBoundingClientRect().right;
-    airplaneCoordsY =  $airplane.getBoundingClientRect().bottom;
+    airplaneCoordsX = $airplane.getBoundingClientRect().right;
+    airplaneCoordsY = $airplane.getBoundingClientRect().bottom;
 
     $$aliens.forEach((alien, i) => {
       if (alien.classList.contains(`alien${i}`)) {
         alienCoordsX[i] = alien.getBoundingClientRect().right;
         alienCoordsY[i] = alien.getBoundingClientRect().bottom;
       }
-    })
-    
-    // if () {
-      
-      // }
-      console.log(airplaneCoordsX, airplaneCoordsY, alienCoordsX, alienCoordsY);
-  }
-
-
+      // x 좌표: (비행기의 client right 값) >= (외계인의 client right 값) + (외계인 width) &&
+      if (airplaneCoordsX >= alienCoordsX[i] - 50) {
+        alien.remove();
+        // alienCoordsX.splice([i], 1);
+        // alienCoordsX.filter((coordX, i) => {
+        //   return coordX !== coordX[i];
+        // });
+        alienCoordsY = [];
+      }
+      console.log(alienCoordsX, alienCoordsY);
+      // console.log(`X:${alienCoordsX}, Y:${alienCoordsY}`);
+      // console.log(airplaneCoordsX, airplaneCoordsY, alienCoordsX, alienCoordsY);
+    });
+  };
 }
 
 // 공통
