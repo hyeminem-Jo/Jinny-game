@@ -38,6 +38,10 @@
   border-radius: 50%;
   background: #aaa;
 
+  &.attacked {
+    background: crimson;
+  }
+
   // 아군 체력
   .airplane-hp-box {
     @include hp-box;
