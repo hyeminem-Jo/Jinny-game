@@ -36,8 +36,7 @@ class Game {
 
     this.paintAirplane();
     this.createAlien();
-    this.controlSpeed();
-    this.removeAlien();
+    // this.controlSpeed();
   }
 
   // 화면 표시 - 아군
@@ -73,41 +72,60 @@ class Game {
       // 화면 표시 - 외계인
       this.paintAlien(i);
     }
+    const $$aliens = document.querySelectorAll('.alien');
 
     // 외계인 속도 지정
-    this.controlSpeed();
+    this.controlSpeed($$aliens);
 
-    const $$aliens = document.querySelectorAll('.alien');
+    // 화면 밖 외계인 없애기
+    this.removeAlien($$aliens);
+
+    $$aliens.forEach((alien, i) => {
+      console.log(`alien.right: ${alien.style.right}`)
+    })
+    
     console.log(this.alien);
-
-    return $$aliens;
   };
 
   // 화면 밖 외계인 전부 없애기 (미해결-2)
-  removeAlien = () => {
+  removeAlien = ($$aliens) => {
     removeId = setTimeout(() => {
-      const $$aliens = document.querySelectorAll('.alien');
+      // const $$aliens = document.querySelectorAll('.alien');
       const $airplane = document.querySelectorAll('.airplane');
       // NodeList > Array 로 바꾸기
       // const aliens = Array.prototype.slice.call($$aliens);
 
-      $$aliens.forEach((alien) => {
+      $$aliens.forEach((alien, i) => {
         alien.remove();
-        alien.style.right = `10px`;
+        alienPoX = 10;
+        alien.style.right = `${alienPoX}px`;
+        console.log(alien.style.right);
+        console.log(alienPoX);
+
+      // if (alien.classList.contains(`alien${i}`)) {
+      //   alienCoordsLeft[i] = alien.getBoundingClientRect().left;
+      //   alienCoordsBottom[i] = alien.getBoundingClientRect().bottom;
+      //   alienCoordsTop[i] = alien.getBoundingClientRect().top;
+      // }
       });
 
-      // this.alien = [];
+      this.alien = [];
       alienCoordsLeft = [];
       alienCoordsBottom = [];
       alienCoordsTop = [];
+
       airplaneCoordsRight = null;
       airplaneCoordsBottom = null;
       airplaneCoordsTop = null;
 
+      clearInterval(smallSpeed);
+      clearInterval(mideumSpeed);
+      clearInterval(bigSpeed);
+
       console.log($$aliens);
       console.log(this.alien);
-    }, 1000);
-    // }, 8000);
+      console.log(alienCoordsLeft, alienCoordsBottom, alienCoordsTop)
+    }, 9000);
 
     // 화면 밖 외계인 화면 밖으로 나가면 전부 없애기 (미해결-2)
   };
@@ -115,9 +133,8 @@ class Game {
   // 외계인 속도 지정 차선책 (미해결-1)
   // https://donggov.tistory.com/154
   // https://imki123.github.io/posts/33/
-  controlSpeed = () => {
-    const $$aliens = document.querySelectorAll('.alien');
-    console.log($$aliens); // NodeList
+  controlSpeed = ($$aliens) => {
+    // console.log($$aliens); // NodeList
 
     $$aliens.forEach((alien) => {
       if (alien.classList.contains('small-alien')) {
@@ -126,21 +143,21 @@ class Game {
           alien.style.right = `${alienPoX}px`;
           alienPoX += 1;
           this.crashAlien();
-        }, 10);
+        }, 15);
       } else if (alien.classList.contains('mideum-alien')) {
         // alien.classList.add('Im-mideum');
         mideumSpeed = setInterval(() => {
           alien.style.right = `${alienPoX}px`;
           alienPoX += 1;
           this.crashAlien();
-        }, 10);
+        }, 15);
       } else if (alien.classList.contains('big-alien')) {
         // alien.classList.add('Im-big');
         bigSpeed = setInterval(() => {
           alien.style.right = `${alienPoX}px`;
           alienPoX += 1;
           this.crashAlien();
-        }, 10);
+        }, 15);
       }
     });
   };
@@ -202,7 +219,6 @@ class Game {
         }, 0 + [i]);
 
         // 사라지는 외계인 요소의 좌표 (미해결-4)
-
         $airplane.classList.add('attacked');
         attackedId = setTimeout(() => {
           $airplane.classList.remove('attacked');
