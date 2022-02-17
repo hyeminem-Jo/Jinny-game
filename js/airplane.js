@@ -1,5 +1,6 @@
 const $game = document.querySelector('#game');
 const $start = document.querySelector('#start');
+// const $airplane = document.querySelector('#airplane');
 
 let alienPoX = 10;
 
@@ -91,7 +92,7 @@ class Game {
   removeAlien = ($$aliens) => {
     removeId = setTimeout(() => {
       // const $$aliens = document.querySelectorAll('.alien');
-      const $airplane = document.querySelectorAll('.airplane');
+      const $airplane = document.querySelector('.airplane');
       // NodeList > Array 로 바꾸기
       // const aliens = Array.prototype.slice.call($$aliens);
 
@@ -109,7 +110,9 @@ class Game {
       // }
       });
 
-      this.alien = [];
+      $airplane.remove();
+      // this.alien = [];
+      // this.airplane = null;
       alienCoordsLeft = [];
       alienCoordsBottom = [];
       alienCoordsTop = [];
@@ -121,6 +124,11 @@ class Game {
       clearInterval(smallSpeed);
       clearInterval(mideumSpeed);
       clearInterval(bigSpeed);
+
+      game = null
+      setTimeout(() => {
+        game = new Game();
+      })
 
       console.log($$aliens);
       console.log(this.alien);
