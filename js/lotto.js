@@ -4,8 +4,8 @@ const shuffle = []
 while (candidate.length > 0) {
   const random = Math.floor(Math.random() * candidate.length) 
   const spliceArray = candidate.splice(random, 1) 
-  const value = spliceArray[0] 
-  shuffle.push(value) 
+  const value = spliceArray[0]
+  shuffle.push(value)
 }
 
 const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b) 
@@ -41,7 +41,7 @@ const showBall = (number, target) => {
   target.appendChild($ball)
 }
 
-for(let i = 0; i < 6; i++) { // [0, 1, 2, 3, 4, 5] => [1000, 2000 ... 6000]
+for(let i = 0; i < 6; i++) { 
   setTimeout(() => {
     showBall(winBalls[i], $result)
   }, (i + 1) * 1000)

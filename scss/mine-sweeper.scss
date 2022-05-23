@@ -59,15 +59,15 @@ td {
 }
 
 .charactor {
-  transform: scale(43%);
-  position: absolute;
-  left: 500px;
-  top: 200px;
+  transform: scale(40%);
+  position: relative;
+  left: 35%;
+  top: 300px;
 }
 
 .timer {
   position: absolute;
-  top: 130px; // 100
+  top: 130px; 
   right: 100px;
 
   .title {

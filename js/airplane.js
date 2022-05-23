@@ -1,6 +1,5 @@
 const $game = document.querySelector('#game');
 const $start = document.querySelector('#start');
-// const $airplane = document.querySelector('#airplane');
 
 let alienPoX = 10;
 
@@ -56,7 +55,7 @@ class Game {
   };
 
   createAlien = () => {
-    // 랜덤 숫자로 외계인 수 생성하기 (최대 6마리까지 생성)
+    // 랜덤 숫자로 외계인 수 생성하기 (최대 8마리까지 생성)
     for (let i = 0; i < Math.floor(Math.random() * 6) + 2; i++) {
       // 랜덤으로 외계인 뽑기
       const randomIndex = Math.floor(Math.random() * this.alienList.length);
@@ -64,7 +63,7 @@ class Game {
 
       // 랜덤으로 뽑힌 외계인들 삽입
       this.alien[i] = new Alien(
-        this,
+        this, // Game
         randomAlien.hp,
         randomAlien.att,
         randomAlien.name
@@ -270,7 +269,6 @@ class Alien extends Unit {
 }
 
 // 랜덤한 시간에
-
 let game = null;
 $start.addEventListener('click', () => {
   game = new Game();
